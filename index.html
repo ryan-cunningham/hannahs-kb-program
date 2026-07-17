@@ -775,6 +775,38 @@
 </div>
 
 <script>
+  var STORE_KEY = 'kbProgress.v1';
+
+  // Give every exercise a stable key (block id + its order within that block)
+  // and load any saved completion state before wiring up interactions.
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(STORE_KEY)) || {}; } catch(e){ saved = {}; }
+
+  function save(){
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(saved)); } catch(e){}
+  }
+
+  document.querySelectorAll('.block').forEach(function(sec){
+    sec.querySelectorAll('.ex').forEach(function(ex, i){
+      var key = sec.id + '-' + i;
+      ex.dataset.key = key;
+      (saved[key] || []).forEach(function(wk){ ex.classList.add('done-' + wk); });
+    });
+  });
+
+  function currentWk(sec){
+    return ['wk1','wk2','wk3','wk4'].find(function(c){return sec.classList.contains(c);}) || 'wk1';
+  }
+  function refreshDone(sec){
+    var wk = currentWk(sec);
+    sec.querySelectorAll('.ex').forEach(function(ex){
+      ex.classList.toggle('done', ex.classList.contains('done-' + wk));
+    });
+  }
+
+  // Apply the initially-visible week's ticks for each block on load.
+  document.querySelectorAll('.block').forEach(refreshDone);
+
   document.querySelectorAll('.tab').forEach(function(t){
     t.addEventListener('click', function(){
       document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
@@ -791,11 +823,8 @@
         wt.querySelectorAll('.wtab').forEach(function(x){x.classList.remove('on');});
         w.classList.add('on');
         sec.classList.remove('wk1','wk2','wk3','wk4');
-        var wk = 'wk' + w.dataset.w;
-        sec.classList.add(wk);
-        sec.querySelectorAll('.ex').forEach(function(ex){
-          ex.classList.toggle('done', ex.classList.contains('done-' + wk));
-        });
+        sec.classList.add('wk' + w.dataset.w);
+        refreshDone(sec);
       });
     });
   });
@@ -805,9 +834,18 @@
   document.querySelectorAll('.ex').forEach(function(r){
     r.addEventListener('click', function(){
       var sec = r.closest('.block');
-      var wk = ['wk1','wk2','wk3','wk4'].find(function(c){return sec.classList.contains(c);}) || 'wk1';
+      var wk = currentWk(sec);
       r.classList.toggle('done-' + wk);
-      r.classList.toggle('done', r.classList.contains('done-' + wk));
+      var on = r.classList.contains('done-' + wk);
+      r.classList.toggle('done', on);
+
+      var key = r.dataset.key;
+      var list = saved[key] || [];
+      var idx = list.indexOf(wk);
+      if (on && idx === -1) list.push(wk);
+      if (!on && idx !== -1) list.splice(idx, 1);
+      if (list.length) saved[key] = list; else delete saved[key];
+      save();
     });
   });
 </script>
