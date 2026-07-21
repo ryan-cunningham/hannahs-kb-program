@@ -1,5 +1,887 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>12-Week Kettlebell Program</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&amp;family=Barlow:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --paper:#0B4008; --card:#FFFFFF; --ink:#163832; --mut:#69707A; --line:#E3E3DC;
+    --group:#F0F0EB;
+    --b8:#B84A75;  --b8bg:#F8E3EC;
+    --b12:#2F6FB5; --b12bg:#E2ECF7;
+    --b16:#9A7410; --b16bg:#F6EACB;
+    --b20:#6E56A8; --b20bg:#EBE5F6;
+    --b24:#2E7C52; --b24bg:#DFF0E6;
+    --bw:#5B6167;  --bwbg:#ECEDE9;
+    --go:#1f5c3d; --done:#e7eee9; --mint:#d2e3d4; --on-mint:#12210f;
+    --pow:#B05A12; --powbg:#F9E9DB;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  body{margin:0; background:var(--paper); color:var(--ink);
+    font-family:'Barlow', system-ui, -apple-system, sans-serif; font-size:15px; line-height:1.35;}
+  .wrap{max-width:1120px; margin:0 auto; padding:20px 14px 60px;}
+
+  .hd{margin-bottom:14px;}
+  .hd h1{font-family:'Barlow Condensed','Barlow',sans-serif; font-weight:800; color:#f4f4f0;
+    font-size:clamp(30px,5vw,44px); letter-spacing:.01em; text-transform:uppercase; margin:0 0 2px;}
+  .hd .sub{color:var(--mut); font-weight:500; margin:0 0 14px;}
+  .rule{background:var(--ink); color:#E7E9EC; border-radius:10px; padding:12px 16px; margin-bottom:12px; line-height:1.45;}
+  .rule b{color:#fff;}
+  .rule .t{font-family:'Barlow Condensed'; font-weight:700; text-transform:uppercase;
+    letter-spacing:.08em; font-size:13px; color:#B9C0C9; margin-right:2px;}
+  .legend{display:flex; flex-wrap:wrap; gap:6px 14px; align-items:center;
+    color:var(--mut); font-size:13px; margin-bottom:4px;}
+  .legend .lg{display:flex; align-items:center; gap:6px;}
+
+  .chip{display:inline-block; padding:1px 8px 2px; border-radius:20px;
+    font-weight:700; font-size:13px; white-space:nowrap;}
+  .k8{background:var(--b8bg); color:var(--b8);}
+  .k12{background:var(--b12bg); color:var(--b12);}
+  .k16{background:var(--b16bg); color:var(--b16);}
+  .k20{background:var(--b20bg); color:var(--b20);}
+  .k24{background:var(--b24bg); color:var(--b24);}
+  .kbw{background:var(--bwbg); color:var(--bw);}
+  .arr{color:#AEB3B9; font-weight:700; padding:0 1px;}
+  .bump{display:inline-block; background:#DFF0E6; color:#2E7C52; border-radius:5px;
+    padding:1px 6px 2px; font-size:11.5px; font-weight:700; letter-spacing:.02em; white-space:nowrap;}
+  .wn{color:var(--mut); font-size:12.5px; font-style:normal; font-weight:600;}
+
+  .tabs{position:sticky; top:0; z-index:5; display:flex; gap:8px; padding:10px 0;
+    background:linear-gradient(var(--paper) 85%, rgba(11,64,8,0));}
+  .tab{flex:1; border:1.5px solid var(--line); background:var(--card); color:var(--mut);
+    font-family:'Barlow Condensed'; font-weight:700; text-transform:uppercase; letter-spacing:.05em;
+    font-size:16px; padding:9px 4px; border-radius:10px; cursor:pointer; text-align:center;}
+  .tab small{display:block; font-family:'Barlow'; font-weight:600; font-size:11px;
+    letter-spacing:.02em; text-transform:none; margin-top:1px;}
+  .tab.on{background:var(--mint); color:var(--on-mint); border-color:var(--mint);}
+  .tab.on small{color:#2f4a35;}
+  .tab.done{background:#ffda03; border-color:#e6c400; color:#1a1a12;}
+  .tab.done small{color:#4a4008;}
+  .tab.done.on{border-color:#b89e00; border-width:2px;}
+  .tab:focus-visible,.wtab:focus-visible{outline:2px solid var(--b12); outline-offset:2px;}
+
+  .block{display:none;}
+  .block.on{display:block;}
+  .bhead{margin:14px 2px 10px;}
+  .bhead h2{font-family:'Barlow Condensed'; font-weight:800; text-transform:uppercase;
+    font-size:24px; margin:0; letter-spacing:.02em;}
+  .bhead p{margin:2px 0 0; color:var(--mut); font-size:14px;}
+
+  .wtabs{display:flex; gap:6px; margin:0 0 14px;}
+  .wtab{flex:1; border:1.5px solid var(--line); background:var(--card); color:var(--mut);
+    font-family:'Barlow Condensed'; font-weight:700; font-size:16px; letter-spacing:.04em;
+    padding:7px 2px; border-radius:9px; cursor:pointer; text-align:center; text-transform:uppercase;}
+  .wtab.on{background:var(--mint); border:1.5px solid var(--mint); color:var(--on-mint);}
+
+  .days{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+  @media (max-width:900px){.days{grid-template-columns:1fr;}}
+
+  .day{background:var(--card); border:1px solid var(--line); border-radius:14px;
+    overflow:hidden; display:flex; flex-direction:column;}
+  .dhead{background:var(--mint); color:var(--on-mint); padding:10px 14px 9px;
+    display:flex; align-items:baseline; gap:10px; cursor:pointer; user-select:none;}
+  .dhead .dn{font-family:'Barlow Condensed'; font-weight:700; font-size:17px;
+    text-transform:uppercase; letter-spacing:.06em;}
+  .dhead .dn span{color:var(--on-mint); font-weight:700; margin-left:8px; font-size:17px; letter-spacing:.06em;}
+  .dhead .dow{font-family:'Barlow Condensed'; font-weight:700; font-size:15px;
+    color:#B9C0C9; letter-spacing:.12em; margin-left:auto;}
+  .dhead::after{content:"▾"; align-self:center; margin-left:auto; color:#2f4a35; font-size:13px;
+    transition:transform .15s ease;}
+  .day.closed .dhead::after{transform:rotate(-90deg);}
+  .day.closed .dbody, .day.closed .dfoot{display:none;}
+  .dbody{padding:10px; display:flex; flex-direction:column; gap:8px; flex:1;}
+
+  .ex{display:flex; gap:10px; align-items:flex-start; padding:9px 10px; border-radius:9px;
+    background:var(--card); border:1px solid var(--line); cursor:pointer; transition:background .12s, border-color .12s;}
+  .ex .slot{position:relative; flex:0 0 26px; width:26px; height:26px; border:1.6px solid var(--line);
+    border-radius:6px; margin-top:1px; background:#fff; display:grid; place-items:center;
+    font-family:'Barlow Condensed'; font-weight:700; font-size:13px; color:var(--mut);}
+  .ex .slot .code{transition:opacity .12s;}
+  .ex .slot svg{position:absolute; width:15px; height:15px; opacity:0; transition:opacity .12s;}
+  .ex .body{flex:1; min-width:0;}
+  .ex .nm{font-weight:700; font-size:15.5px;}
+  .ex .nm small{font-weight:500; color:var(--mut); font-size:13px;}
+  .ex .rest{color:var(--mut); font-size:12.5px; font-weight:600; white-space:nowrap;}
+  .ex .sr{font-weight:700; font-size:14px; background:#EEEFEA; border-radius:6px; padding:1px 7px;}
+  .ex.done{background:var(--done); border-color:#bcd2c2;}
+  .ex.done .slot{background:#ffda03; border-color:#ffda03; color:#1a1a12;}
+  .ex.done .slot .code{opacity:0;}
+  .ex.done .slot svg{opacity:1; stroke:#1a1a12;}
+  .ex.done .nm{color:var(--mut); text-decoration:line-through;}
+
+  .m{margin-top:3px; display:none; flex-wrap:wrap; gap:4px 8px; align-items:center;}
+  .wk1 .m.w1,.wk2 .m.w2,.wk3 .m.w3,.wk4 .m.w4{display:flex;}
+
+  .pair{background:#e8e8e0; border:1.5px dashed #C3C7BC; border-radius:11px; padding:8px;}
+  .pair .ph{display:flex; align-items:center; gap:7px; padding:1px 4px 6px; flex-wrap:wrap;}
+  .pair .ph .tag{background:#ffda03; color:#1a1a12; border-radius:5px; font-family:'Barlow Condensed';
+    font-weight:700; font-size:12.5px; letter-spacing:.09em; padding:2px 7px; text-transform:uppercase;}
+  .pair .ph .hint{color:var(--mut); font-size:12.5px; font-weight:600;}
+  .pair .ex{background:#fff;}
+  .pair .ex + .ex{margin-top:6px;}
+  .pair.solo .ph{padding-bottom:5px;}
+
+  .tagline{display:inline-block; font-family:'Barlow Condensed'; font-weight:700; font-size:12.5px;
+    letter-spacing:.09em; text-transform:uppercase; border-radius:5px; padding:2px 7px; margin-left:2px;}
+  .tg-solo{background:#EEEFEA; color:var(--mut);}
+  .tg-pow{background:var(--powbg); color:var(--pow);}
+  .tg-fin{background:#EEEFEA; color:var(--mut);}
+
+  .circuit{background:#e8e8e0; border:1.5px dashed #C3C7BC; border-radius:11px; padding:8px;}
+  .circuit .ch{padding:2px 4px 8px;}
+  .circuit .ch .m{margin-top:0; gap:8px;}
+  .circuit .rounds{background:#ffda03; color:#1a1a12; border-radius:5px;
+    font-family:'Barlow Condensed'; font-weight:700; font-size:12.5px; letter-spacing:.09em;
+    padding:2px 7px; text-transform:uppercase; white-space:nowrap;}
+  .circuit .hint{color:var(--mut); font-size:12.5px; font-weight:600;}
+  .circuit .ex{background:#fff;}
+  .circuit .ex + .ex{margin-top:6px;}
+
+  .note{color:var(--mut); font-size:12px; font-weight:600; margin-top:2px; line-height:1.35;}
+  .wknote{display:none; color:var(--mut); font-size:12px; font-weight:600; font-style:italic;
+    margin-top:2px; line-height:1.35;}
+  .wk1 .wknote.w1,.wk2 .wknote.w2,.wk3 .wknote.w3,.wk4 .wknote.w4{display:block;}
+  .dfoot{border-top:1px solid var(--line); padding:8px 12px; color:var(--mut);
+    font-size:12.5px; line-height:1.45;}
+  .dfoot b{color:var(--ink);}
+
+  .warm{background:var(--card); border:1px solid var(--line); border-radius:12px;
+    padding:10px 14px; margin:0 0 16px;}
+  .bdesc{margin:2px 2px 14px; color:#c3dabf; font-size:14px; line-height:1.4;}
+  .warmnote{margin:-10px 2px 16px; color:#a9c3a6; font-size:12.5px; font-style:italic; line-height:1.35;}
+  .warm .t{font-family:'Barlow Condensed'; font-weight:700; text-transform:uppercase;
+    letter-spacing:.08em; font-size:13.5px; color:var(--mut); margin-right:8px;}
+  .warm span.i{font-weight:600; font-size:13.5px; white-space:nowrap;}
+  .warm .sep{color:#C6C8C0; padding:0 6px;}
+
+  .bench{margin-top:22px; background:var(--ink); color:#E7E9EC; border-radius:12px; padding:14px 16px;}
+  .bench .t{font-family:'Barlow Condensed'; font-weight:800; text-transform:uppercase;
+    letter-spacing:.06em; font-size:17px; color:#fff; margin-bottom:6px;}
+  .bench .items{display:flex; flex-wrap:wrap; gap:6px 18px; font-weight:600; font-size:14px;}
+  .bench .items span b{color:#fff;}
+  .tip{color:#a9c3a6; font-size:12.5px; text-align:center; margin-top:14px;}
+  .reset-week{display:block; margin:18px auto 0; padding:8px 18px; background:transparent;
+    border:1px solid rgba(255,255,255,.30); color:#c3dabf; border-radius:8px; cursor:pointer;
+    font-family:'Barlow Condensed'; font-weight:700; text-transform:uppercase;
+    letter-spacing:.06em; font-size:14px;}
+  .reset-week:hover{border-color:rgba(255,255,255,.6); color:#fff;}
+
+  @media print{
+    .tabs,.tip{display:none;}
+    .block{display:block !important; page-break-after:always;}
+    .day.closed .dbody, .day.closed .dfoot{display:flex !important;}
+    .dhead::after{display:none;}
+    body{background:#fff;}
+    .ex{cursor:default;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hd">
+<h1>12-Week Kettlebell Program</h1>
+</header>
+<nav aria-label="Program blocks" class="tabs">
+<button class="tab on" data-b="b1">Block 1<small>Rebuild – 0% completed</small></button>
+<button class="tab" data-b="b2">Block 2<small>Strength – 0% completed</small></button>
+<button class="tab" data-b="b3">Block 3<small>Power – 0% completed</small></button>
+</nav>
+<!-- ================= BLOCK 1 ================= -->
+<section class="block on wk1" id="b1">
+<div aria-label="Week" class="wtabs" role="tablist">
+<button class="wtab on" data-w="1">Week 1</button>
+<button class="wtab" data-w="2">Week 2</button>
+<button class="wtab" data-w="3">Week 3</button>
+<button class="wtab" data-w="4">Week 4</button>
+</div><p class="bdesc">Re-groove the patterns, condition the joints. Strength comes back fast.</p>
+<div class="warm">
+<span class="t">Warm-up · every session</span>
+<span class="i">2 min easy movement</span><span class="sep">·</span>
+<span class="i">cat-cow ×8</span><span class="sep">·</span>
+<span class="i">band lateral walk ×10/side</span><span class="sep">·</span>
+<span class="i">band pull-apart ×10</span><span class="sep">·</span>
+<span class="i">goblet squat <span class="chip k8">8kg</span> ×5</span><span class="sep">·</span>
+<span class="i">swings <span class="chip k8">8kg</span> ×10</span>
+</div>
+<div class="days">
+<article class="day">
+<div class="dhead"><span class="dn">Day A<span>Squat &amp; Press</span></span></div>
+<div class="dbody">
+<div class="pair solo"><div class="ph"><span class="tag tg-solo">Solo</span><span class="hint">rest 90–120s</span></div><div class="ex"><div class="slot"><span class="code">1</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Goblet squat</div><div class="note">sit deep, chest tall</div>
+<div class="m w1"><span class="sr">3 × 8</span><span class="chip k12">12kg</span></div>
+<div class="m w2"><span class="sr">3 × 10</span><span class="chip k12">12kg</span></div>
+<div class="m w3"><span class="sr">3 × 12</span><span class="chip k12">12kg</span></div>
+<div class="m w4"><span class="sr">3 × 8</span><span class="chip k16">16kg</span><span class="bump">▲ new bell</span></div>
+</div></div></div>
+<div class="pair">
+<div class="ph"><span class="tag">Superset</span><span class="hint">alternate 2A ↔ 2B · rest 45–60s between moves</span></div>
+<div class="ex"><div class="slot"><span class="code">2A</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Single-arm strict press</div><div class="note">strict, no back-lean · per side</div>
+<div class="m w1"><span class="sr">3 × 5</span><span class="chip k8">8kg</span></div>
+<div class="m w2"><span class="sr">3 × 6</span><span class="chip k8">8kg</span></div>
+<div class="m w3"><span class="sr">3 × 7</span><span class="chip k8">8kg</span></div>
+<div class="m w4"><span class="sr">3 × 8</span><span class="chip k8">8kg</span></div>
+</div></div>
+<div class="ex"><div class="slot"><span class="code">2B</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Romanian deadlift</div><div class="note">hips back, flat back</div>
+<div class="m w1"><span class="sr">3 × 10</span><span class="chip k16">16kg</span></div>
+<div class="m w2"><span class="sr">3 × 12</span><span class="chip k16">16kg</span></div>
+<div class="m w3"><span class="sr">3 × 10</span><span class="chip k20">20kg</span><span class="bump">▲ new bell</span></div>
+<div class="m w4"><span class="sr">3 × 12</span><span class="chip k20">20kg</span></div>
+</div></div>
+</div>
+<div class="pair">
+<div class="ph"><span class="tag">Superset</span><span class="hint">alternate 3A ↔ 3B · rest 45–60s</span></div>
+<div class="ex"><div class="slot"><span class="code">3A</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Single-arm row</div><div class="note">flat back, elbow to hip · per side</div>
+<div class="m w1"><span class="sr">3 × 10</span><span class="chip k12">12kg</span></div>
+<div class="m w2"><span class="sr">3 × 12</span><span class="chip k12">12kg</span></div>
+<div class="m w3"><span class="sr">3 × 8</span><span class="chip k16">16kg</span><span class="bump">▲ new bell</span></div>
+<div class="m w4"><span class="sr">3 × 10</span><span class="chip k16">16kg</span></div>
+</div></div>
+<div class="ex"><div class="slot"><span class="code">3B</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Glute bridge</div><div class="note">squeeze hard at the top</div>
+<div class="m w1"><span class="sr">3 × 12</span><span class="chip k16">16kg</span></div>
+<div class="m w2"><span class="sr">3 × 15</span><span class="chip k16">16kg</span></div>
+<div class="m w3"><span class="sr">3 × 12</span><span class="chip k20">20kg</span><span class="bump">▲ new bell</span></div>
+<div class="m w4"><span class="sr">3 × 12</span><span class="chip k24">24kg</span><span class="bump">▲ new bell</span></div>
+</div></div>
+</div>
+<div class="pair solo"><div class="ph"><span class="tag tg-fin">Finish</span><span class="hint">rest as needed</span></div><div class="ex"><div class="slot"><span class="code">4</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Farmer carry</div><div class="note">tall &amp; braced, no swing</div>
+<div class="m w1"><span class="sr">3 × 40s</span><span class="chip k16">2 × 16kg</span></div>
+<div class="m w2"><span class="sr">3 × 40s</span><span class="chip k16">2 × 16kg</span></div>
+<div class="m w3"><span class="sr">3 × 50s</span><span class="chip k16">2 × 16kg</span><span class="bump">▲ time</span></div>
+<div class="m w4"><span class="sr">3 × 50s</span><span class="chip k16">2 × 16kg</span></div>
+</div></div></div>
+</div>
+<div class="dfoot"><b>Press too heavy?</b> Use a small leg-drive push press, or floor press the 12kg for two weeks — then rejoin the numbers.</div>
+</article>
+<article class="day">
+<div class="dhead"><span class="dn">Day B<span>Hinge &amp; Glutes</span></span></div>
+<div class="dbody">
+<div class="pair solo"><div class="ph"><span class="tag tg-solo">Solo</span><span class="hint">rest 90–120s</span></div><div class="ex"><div class="slot"><span class="code">1</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">KB deadlift</div><div class="note">hips back, flat back</div>
+<div class="m w1"><span class="sr">3 × 8</span><span class="chip k20">20kg</span></div>
+<div class="m w2"><span class="sr">3 × 10</span><span class="chip k20">20kg</span></div>
+<div class="m w3"><span class="sr">3 × 8</span><span class="chip k24">24kg</span><span class="bump">▲ new bell</span></div>
+<div class="m w4"><span class="sr">3 × 10</span><span class="chip k24">24kg</span></div>
+</div></div></div>
+<div class="pair solo"><div class="ph"><span class="tag tg-pow">Power</span><span class="hint">full rest between sets</span></div><div class="ex"><div class="slot"><span class="code">2</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Two-hand swing</div><div class="note">hip snap, not a squat</div>
+<div class="m w1"><span class="sr">4 × 10</span><span class="chip k12">12kg</span></div>
+<div class="m w2"><span class="sr">5 × 10</span><span class="chip k12">12kg</span><span class="bump">▲ extra set</span></div>
+<div class="m w3"><span class="sr">4 × 10</span><span class="chip k16">16kg</span><span class="bump">▲ new bell</span></div>
+<div class="m w4"><span class="sr">5 × 10</span><span class="chip k16">16kg</span><span class="bump">▲ extra set</span></div>
+</div></div></div>
+<div class="pair">
+<div class="ph"><span class="tag">Superset</span><span class="hint">alternate 3A ↔ 3B · rest 45–60s</span></div>
+<div class="ex"><div class="slot"><span class="code">3A</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Reverse lunge</div><div class="note">torso tall, drive front heel · per side</div>
+<div class="m w1"><span class="sr">3 × 8</span><span class="chip kbw">BW</span></div>
+<div class="m w2"><span class="sr">3 × 10</span><span class="chip kbw">BW</span></div>
+<div class="m w3"><span class="sr">3 × 8</span><span class="chip k8">8kg goblet</span><span class="bump">▲ add load</span></div>
+<div class="m w4"><span class="sr">3 × 10</span><span class="chip k8">8kg goblet</span></div>
+</div></div>
+<div class="ex"><div class="slot"><span class="code">3B</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Single-arm floor press</div><div class="note">elbow ~45°, control down · per side</div><div class="wknote w4">3s lowering</div>
+<div class="m w1"><span class="sr">3 × 8</span><span class="chip k12">12kg</span></div>
+<div class="m w2"><span class="sr">3 × 10</span><span class="chip k12">12kg</span></div>
+<div class="m w3"><span class="sr">3 × 12</span><span class="chip k12">12kg</span></div>
+<div class="m w4"><span class="sr">3 × 12</span><span class="chip k12">12kg</span></div>
+</div></div>
+</div>
+<div class="pair">
+<div class="ph"><span class="tag">Superset</span><span class="hint">alternate 4A ↔ 4B · rest 45–60s</span></div>
+<div class="ex"><div class="slot"><span class="code">4A</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Band lateral walk</div><div class="note">knees out, hips level</div><div class="wknote w4">heavier band if easy</div>
+<div class="m w1"><span class="sr">3 × 12 steps/way</span><span class="chip kbw">band</span></div>
+<div class="m w2"><span class="sr">3 × 12 steps/way</span><span class="chip kbw">band</span></div>
+<div class="m w3"><span class="sr">3 × 15 steps/way</span><span class="chip kbw">band</span></div>
+<div class="m w4"><span class="sr">3 × 15 steps/way</span><span class="chip kbw">band</span></div>
+</div></div>
+<div class="ex"><div class="slot"><span class="code">4B</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Dead bug</div><div class="note">lower back pressed flat</div>
+<div class="m w1"><span class="sr">3 × 6</span><span class="chip kbw">BW</span></div>
+<div class="m w2"><span class="sr">3 × 8</span><span class="chip kbw">BW</span></div>
+<div class="m w3"><span class="sr">3 × 8</span><span class="chip kbw">BW</span></div>
+<div class="m w4"><span class="sr">3 × 10</span><span class="chip kbw">BW</span></div>
+</div></div>
+</div>
+</div>
+<div class="dfoot"><b>Swing check:</b> it’s a hinge, not a squat — hips back, flat spine, snap forward. Arms are ropes.</div>
+</article>
+<article class="day">
+<div class="dhead"><span class="dn">Day C<span>Full-Body Circuit</span></span></div>
+<div class="dbody">
+<div class="circuit">
+<div class="ch">
+<div class="m w1"><span class="rounds">3 ROUNDS</span><span class="hint">top to bottom, brisk · 90s rest between rounds</span></div>
+<div class="m w2"><span class="rounds">4 ROUNDS</span><span class="hint">90s rest between rounds</span><span class="bump">▲ extra round</span></div>
+<div class="m w3"><span class="rounds">4 ROUNDS</span><span class="hint">90s rest between rounds</span></div>
+<div class="m w4"><span class="rounds">4 ROUNDS</span><span class="hint">75s rest between rounds</span><span class="bump">▲ pace</span></div>
+</div>
+<div class="ex"><div class="slot"><span class="code">1</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body"><div class="nm">Two-hand swing</div><div class="note">hip snap, not a squat</div>
+<div class="m w1"><span class="sr">×12</span><span class="chip k12">12kg</span></div>
+<div class="m w2"><span class="sr">×12</span><span class="chip k12">12kg</span></div>
+<div class="m w3"><span class="sr">×12</span><span class="chip k16">16kg</span><span class="bump">▲ new bell</span></div>
+<div class="m w4"><span class="sr">×12</span><span class="chip k16">16kg</span></div>
+</div></div>
+<div class="ex"><div class="slot"><span class="code">2</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body"><div class="nm">Goblet squat</div><div class="note">sit deep, chest tall</div>
+<div class="m w1"><span class="sr">×10</span><span class="chip k12">12kg</span></div>
+<div class="m w2"><span class="sr">×10</span><span class="chip k12">12kg</span></div>
+<div class="m w3"><span class="sr">×10</span><span class="chip k12">12kg</span></div>
+<div class="m w4"><span class="sr">×10</span><span class="chip k12">12kg</span></div>
+</div></div>
+<div class="ex"><div class="slot"><span class="code">3</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body"><div class="nm">Push-up</div><div class="note">straight line, full lockout</div>
+<div class="m w1"><span class="sr">×6</span><span class="chip kbw">BW</span></div>
+<div class="m w2"><span class="sr">×8</span><span class="chip kbw">BW</span></div>
+<div class="m w3"><span class="sr">×8</span><span class="chip kbw">BW</span></div>
+<div class="m w4"><span class="sr">×10</span><span class="chip kbw">BW</span></div>
+</div></div>
+<div class="ex"><div class="slot"><span class="code">4</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body"><div class="nm">Single-arm row</div><div class="note">flat back, elbow to hip · per side</div>
+<div class="m w1"><span class="sr">×10</span><span class="chip k12">12kg</span></div>
+<div class="m w2"><span class="sr">×10</span><span class="chip k12">12kg</span></div>
+<div class="m w3"><span class="sr">×10</span><span class="chip k12">12kg</span></div>
+<div class="m w4"><span class="sr">×10</span><span class="chip k12">12kg</span></div>
+</div></div>
+<div class="ex"><div class="slot"><span class="code">5</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body"><div class="nm">Suitcase carry</div><div class="note">stay square, don't lean · per side</div>
+<div class="m w1"><span class="sr">25s</span><span class="chip k16">16kg</span></div>
+<div class="m w2"><span class="sr">30s</span><span class="chip k16">16kg</span></div>
+<div class="m w3"><span class="sr">40s</span><span class="chip k16">16kg</span></div>
+<div class="m w4"><span class="sr">40s</span><span class="chip k16">16kg</span></div>
+</div></div>
+</div>
+<div class="circuit">
+<div class="ch"><div class="m w1"><span class="rounds">2 ROUNDS</span><span class="hint">glute finisher · minimal rest</span></div>
+<div class="m w2"><span class="rounds">2 ROUNDS</span><span class="hint">glute finisher · minimal rest</span></div>
+<div class="m w3"><span class="rounds">2 ROUNDS</span><span class="hint">glute finisher · minimal rest</span></div>
+<div class="m w4"><span class="rounds">2 ROUNDS</span><span class="hint">glute finisher · minimal rest</span></div></div>
+<div class="ex"><div class="slot"><span class="code">1</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body"><div class="nm">Banded glute bridge ×15 · seated abduction ×20 · lateral walk ×10/way</div><div class="note">constant band tension</div>
+<div class="m w1"><span class="chip kbw">band</span></div><div class="m w2"><span class="chip kbw">band</span></div>
+<div class="m w3"><span class="chip kbw">band</span></div><div class="m w4"><span class="chip kbw">band</span></div>
+</div></div>
+</div>
+</div>
+<div class="dfoot"><b>Chaotic week?</b> Days A and B are the program — this day is the first to drop.</div>
+</article>
+</div>
+<button class="reset-week">Reset week</button></section>
+<!-- ================= BLOCK 2 ================= -->
+<section class="block wk1" id="b2">
+<div aria-label="Week" class="wtabs" role="tablist">
+<button class="wtab on" data-w="1">Week 5</button>
+<button class="wtab" data-w="2">Week 6</button>
+<button class="wtab" data-w="3">Week 7</button>
+<button class="wtab" data-w="4">Week 8</button>
+</div><p class="bdesc">Double-bell work begins and loads climb properly.</p>
+<div class="warm">
+<span class="t">Warm-up · every session</span>
+<span class="i">2 min easy movement</span><span class="sep">·</span>
+<span class="i">cat-cow ×8</span><span class="sep">·</span>
+<span class="i">band lateral walk ×10/side</span><span class="sep">·</span>
+<span class="i">band pull-apart ×10</span><span class="sep">·</span>
+<span class="i">goblet squat <span class="chip k12">12kg</span> ×5</span><span class="sep">·</span>
+<span class="i">swings <span class="chip k12">12kg</span> ×8</span>
+</div>
+<div class="days">
+<article class="day">
+<div class="dhead"><span class="dn">Day A<span>Squat &amp; Press</span></span></div>
+<div class="dbody">
+<div class="pair solo"><div class="ph"><span class="tag tg-solo">Solo</span><span class="hint">rest 90–120s</span></div><div class="ex"><div class="slot"><span class="code">1</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Double KB front squat</div><div class="note">elbows up, sit deep</div><div class="wknote w1">swap the mixed pair between sides each set</div>
+<div class="m w1"><span class="sr">4 × 5</span><span class="chip k12">12</span><span class="arr">+</span><span class="chip k16">16kg</span></div>
+<div class="m w2"><span class="sr">4 × 6</span><span class="chip k12">12</span><span class="arr">+</span><span class="chip k16">16kg</span></div>
+<div class="m w3"><span class="sr">4 × 8</span><span class="chip k12">12</span><span class="arr">+</span><span class="chip k16">16kg</span></div>
+<div class="m w4"><span class="sr">4 × 5</span><span class="chip k16">2 × 16kg</span><span class="bump">▲ matched pair</span></div>
+</div></div></div>
+<div class="pair solo"><div class="ph"><span class="tag tg-solo">Solo</span><span class="hint">rest 90s</span></div><div class="ex"><div class="slot"><span class="code">2</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Single-arm press</div><div class="note">brace; small leg drive OK · per side</div>
+<div class="m w1"><span class="sr">4 × 6</span><span class="chip k8">8kg</span></div>
+<div class="m w2"><span class="sr">4 × 8</span><span class="chip k8">8kg</span></div>
+<div class="m w3"><span class="sr">4 × 5</span><span class="chip k12">12kg</span><span class="bump">▲ new bell</span></div>
+<div class="m w4"><span class="sr">4 × 6</span><span class="chip k12">12kg</span></div>
+</div></div></div>
+<div class="pair">
+<div class="ph"><span class="tag">Superset</span><span class="hint">alternate 3A ↔ 3B · rest 45–60s</span></div>
+<div class="ex"><div class="slot"><span class="code">3A</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Romanian deadlift</div><div class="note">hips back, flat back</div>
+<div class="m w1"><span class="sr">3 × 8</span><span class="chip k20">20kg</span></div>
+<div class="m w2"><span class="sr">3 × 10</span><span class="chip k20">20kg</span></div>
+<div class="m w3"><span class="sr">3 × 8</span><span class="chip k24">24kg</span><span class="bump">▲ new bell</span></div>
+<div class="m w4"><span class="sr">3 × 10</span><span class="chip k24">24kg</span></div>
+</div></div>
+<div class="ex"><div class="slot"><span class="code">3B</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Single-arm row</div><div class="note">flat back, elbow to hip · per side</div>
+<div class="m w1"><span class="sr">3 × 8</span><span class="chip k16">16kg</span></div>
+<div class="m w2"><span class="sr">3 × 10</span><span class="chip k16">16kg</span></div>
+<div class="m w3"><span class="sr">3 × 8</span><span class="chip k20">20kg</span><span class="bump">▲ new bell</span></div>
+<div class="m w4"><span class="sr">3 × 10</span><span class="chip k20">20kg</span></div>
+</div></div>
+</div>
+<div class="pair solo"><div class="ph"><span class="tag tg-solo">Solo</span><span class="hint">rest 60–90s</span></div><div class="ex"><div class="slot"><span class="code">4</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Hip thrust</div><div class="note">full extension, squeeze</div>
+<div class="m w1"><span class="sr">3 × 10</span><span class="chip k24">24kg</span></div>
+<div class="m w2"><span class="sr">3 × 12</span><span class="chip k24">24kg</span></div>
+<div class="m w3"><span class="sr">3 × 10</span><span class="chip k24">24kg</span><span class="chip kbw">+ band</span><span class="bump">▲ add band</span></div>
+<div class="m w4"><span class="sr">3 × 12</span><span class="chip k24">24kg</span><span class="chip kbw">+ band</span></div>
+</div></div></div>
+<div class="pair solo"><div class="ph"><span class="tag tg-fin">Finish</span><span class="hint">rest as needed</span></div><div class="ex"><div class="slot"><span class="code">5</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Farmer carry</div><div class="note">tall &amp; braced, no swing</div>
+<div class="m w1"><span class="sr">3 × 40s</span><span class="chip k20">2 × 20kg</span></div>
+<div class="m w2"><span class="sr">3 × 50s</span><span class="chip k20">2 × 20kg</span><span class="bump">▲ time</span></div>
+<div class="m w3"><span class="sr">3 × 50s</span><span class="chip k20">2 × 20kg</span></div>
+<div class="m w4"><span class="sr">3 × 50s</span><span class="chip k20">2 × 20kg</span></div>
+</div></div></div>
+</div>
+<div class="dfoot"><b>New this block:</b> the double rack position. Spend a session just holding and breathing in it if it feels foreign.</div>
+</article>
+<article class="day">
+<div class="dhead"><span class="dn">Day B<span>Hinge &amp; Glutes</span></span></div>
+<div class="dbody">
+<div class="pair solo"><div class="ph"><span class="tag tg-solo">Solo</span><span class="hint">rest 90–120s</span></div><div class="ex"><div class="slot"><span class="code">1</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Double KB deadlift</div><div class="note">flat back, bells close</div>
+<div class="m w1"><span class="sr">4 × 6</span><span class="chip k16">2 × 16kg</span></div>
+<div class="m w2"><span class="sr">4 × 8</span><span class="chip k16">2 × 16kg</span></div>
+<div class="m w3"><span class="sr">4 × 6</span><span class="chip k20">2 × 20kg</span><span class="bump">▲ new bells</span></div>
+<div class="m w4"><span class="sr">4 × 8</span><span class="chip k20">2 × 20kg</span></div>
+</div></div></div>
+<div class="pair solo"><div class="ph"><span class="tag tg-pow">Power</span><span class="hint">full rest between sets</span></div><div class="ex"><div class="slot"><span class="code">2</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Two-hand swing</div><div class="note">hip snap, not a squat</div>
+<div class="m w1"><span class="sr">5 × 10</span><span class="chip k16">16kg</span></div>
+<div class="m w2"><span class="sr">4 × 10</span><span class="chip k20">20kg</span><span class="bump">▲ new bell</span></div>
+<div class="m w3"><span class="sr">5 × 10</span><span class="chip k20">20kg</span><span class="bump">▲ extra set</span></div>
+<div class="m w4"><span class="sr">6 × 10</span><span class="chip k20">20kg</span><span class="bump">▲ extra set</span></div>
+</div></div></div>
+<div class="pair">
+<div class="ph"><span class="tag">Superset</span><span class="hint">alternate 3A ↔ 3B · rest 45–60s</span></div>
+<div class="ex"><div class="slot"><span class="code">3A</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Split squat or step-up</div><div class="note">drop straight down · per side</div>
+<div class="m w1"><span class="sr">3 × 8</span><span class="chip k8">8kg</span></div>
+<div class="m w2"><span class="sr">3 × 10</span><span class="chip k8">8kg</span></div>
+<div class="m w3"><span class="sr">3 × 8</span><span class="chip k12">12kg</span><span class="bump">▲ new bell</span></div>
+<div class="m w4"><span class="sr">3 × 10</span><span class="chip k12">12kg</span></div>
+</div></div>
+<div class="ex"><div class="slot"><span class="code">3B</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Floor press</div><div class="note">elbows ~45°, control down · per side</div>
+<div class="m w1"><span class="sr">3 × 6</span><span class="chip k16">16kg</span><span class="bump">▲ new bell</span></div>
+<div class="m w2"><span class="sr">3 × 8</span><span class="chip k16">16kg</span></div>
+<div class="m w3"><span class="sr">3 × 9</span><span class="chip k16">16kg</span></div>
+<div class="m w4"><span class="sr">3 × 10</span><span class="chip k16">16kg</span></div>
+</div></div>
+</div>
+<div class="pair">
+<div class="ph"><span class="tag">Superset</span><span class="hint">alternate 4A ↔ 4B · rest 45–60s</span></div>
+<div class="ex"><div class="slot"><span class="code">4A</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Single-leg glute bridge</div><div class="note">hips level, squeeze top · per side</div>
+<div class="m w1"><span class="sr">3 × 8</span><span class="chip kbw">BW</span></div>
+<div class="m w2"><span class="sr">3 × 10</span><span class="chip kbw">BW</span></div>
+<div class="m w3"><span class="sr">3 × 8</span><span class="chip k8">+8kg on hips</span><span class="bump">▲ add load</span></div>
+<div class="m w4"><span class="sr">3 × 10</span><span class="chip k8">+8kg on hips</span></div>
+</div></div>
+<div class="ex"><div class="slot"><span class="code">4B</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Side plank</div><div class="note">straight line, don't sag · per side</div>
+<div class="m w1"><span class="sr">3 × 20s</span><span class="chip kbw">BW</span></div>
+<div class="m w2"><span class="sr">3 × 25s</span><span class="chip kbw">BW</span></div>
+<div class="m w3"><span class="sr">3 × 30s</span><span class="chip kbw">BW</span></div>
+<div class="m w4"><span class="sr">3 × 30s</span><span class="chip kbw">BW</span></div>
+</div></div>
+</div>
+</div>
+<div class="dfoot"><b>Glute truth:</b> these heavy hinges are what build the shape — the band work is the garnish.</div>
+</article>
+<article class="day">
+<div class="dhead"><span class="dn">Day C<span>Density · EMOM</span></span></div>
+<div class="dbody">
+<div class="circuit">
+<div class="ch">
+<div class="m w1"><span class="rounds">EMOM 16 MIN</span><span class="hint">each minute: do the work, rest till the next minute · 4 rounds</span></div>
+<div class="m w2"><span class="rounds">EMOM 20 MIN</span><span class="hint">5 rounds</span><span class="bump">▲ extra round</span></div>
+<div class="m w3"><span class="rounds">EMOM 20 MIN</span><span class="hint">5 rounds</span></div>
+<div class="m w4"><span class="rounds">EMOM 20 MIN</span><span class="hint">5 rounds</span></div>
+</div>
+<div class="ex"><div class="slot"><span class="code">M1</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body"><div class="nm">Two-hand swing</div><div class="note">hip snap, not a squat</div>
+<div class="m w1"><span class="sr">×12</span><span class="chip k16">16kg</span></div>
+<div class="m w2"><span class="sr">×12</span><span class="chip k16">16kg</span></div>
+<div class="m w3"><span class="sr">×12</span><span class="chip k20">20kg</span><span class="bump">▲ new bell</span></div>
+<div class="m w4"><span class="sr">×12</span><span class="chip k20">20kg</span></div>
+</div></div>
+<div class="ex"><div class="slot"><span class="code">M2</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body"><div class="nm">Goblet squat</div><div class="note">sit deep, chest tall</div>
+<div class="m w1"><span class="sr">×8</span><span class="chip k16">16kg</span></div>
+<div class="m w2"><span class="sr">×8</span><span class="chip k16">16kg</span></div>
+<div class="m w3"><span class="sr">×8</span><span class="chip k16">16kg</span></div>
+<div class="m w4"><span class="sr">×8</span><span class="chip k16">16kg</span></div>
+</div></div>
+<div class="ex"><div class="slot"><span class="code">M3</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body"><div class="nm">Push-up</div><div class="note">straight line, full lockout</div>
+<div class="m w1"><span class="sr">×6</span><span class="chip kbw">BW</span></div>
+<div class="m w2"><span class="sr">×8</span><span class="chip kbw">BW</span></div>
+<div class="m w3"><span class="sr">×8</span><span class="chip kbw">BW</span></div>
+<div class="m w4"><span class="sr">×10</span><span class="chip kbw">BW</span></div>
+</div></div>
+<div class="ex"><div class="slot"><span class="code">M4</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body"><div class="nm">Single-arm row</div><div class="note">flat back, elbow to hip · per side</div>
+<div class="m w1"><span class="sr">×8</span><span class="chip k16">16kg</span></div>
+<div class="m w2"><span class="sr">×8</span><span class="chip k16">16kg</span></div>
+<div class="m w3"><span class="sr">×8</span><span class="chip k16">16kg</span></div>
+<div class="m w4"><span class="sr">×8</span><span class="chip k16">16kg</span></div>
+</div></div>
+</div>
+<div class="circuit">
+<div class="ch"><div class="m w1"><span class="rounds">FINISH</span><span class="hint">glute finisher ×2 rounds, then one carry</span></div>
+<div class="m w2"><span class="rounds">FINISH</span><span class="hint">glute finisher ×2 rounds, then one carry</span></div>
+<div class="m w3"><span class="rounds">FINISH</span><span class="hint">glute finisher ×2 rounds, then one carry</span></div>
+<div class="m w4"><span class="rounds">FINISH</span><span class="hint">glute finisher ×2 rounds, then one carry</span></div></div>
+<div class="ex"><div class="slot"><span class="code">1</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body"><div class="nm">Banded glute bridge ×15 · seated abduction ×20 · lateral walk ×10/way</div><div class="note">constant band tension</div>
+<div class="m w1"><span class="chip kbw">band</span></div><div class="m w2"><span class="chip kbw">band</span></div>
+<div class="m w3"><span class="chip kbw">band</span></div><div class="m w4"><span class="chip kbw">band</span></div>
+</div></div>
+<div class="ex"><div class="slot"><span class="code">2</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body"><div class="nm">Farmer carry</div><div class="note">tall &amp; braced, no swing</div>
+<div class="m w1"><span class="sr">1 × 50s</span><span class="chip k20">2 × 20kg</span></div>
+<div class="m w2"><span class="sr">1 × 50s</span><span class="chip k20">2 × 20kg</span></div>
+<div class="m w3"><span class="sr">1 × 50s</span><span class="chip k20">2 × 20kg</span></div>
+<div class="m w4"><span class="sr">1 × 50s</span><span class="chip k20">2 × 20kg</span></div>
+</div></div>
+</div>
+</div>
+<div class="dfoot"><b>Pace check:</b> if a minute’s work takes more than ~35s, drop the reps, not the form.</div>
+</article>
+</div>
+<button class="reset-week">Reset week</button></section>
+<!-- ================= BLOCK 3 ================= -->
+<section class="block wk1" id="b3">
+<div aria-label="Week" class="wtabs" role="tablist">
+<button class="wtab on" data-w="1">Week 9</button>
+<button class="wtab" data-w="2">Week 10</button>
+<button class="wtab" data-w="3">Week 11</button>
+<button class="wtab" data-w="4">Week 12</button>
+</div><p class="bdesc">Heavy and explosive. Power is the key, and swings build it best.</p>
+<div class="warm">
+<span class="t">Warm-up · every session</span>
+<span class="i">2 min easy movement</span><span class="sep">·</span>
+<span class="i">cat-cow ×8</span><span class="sep">·</span>
+<span class="i">band lateral walk ×10/side</span><span class="sep">·</span>
+<span class="i">band pull-apart ×10</span><span class="sep">·</span>
+<span class="i">goblet squat <span class="chip k16">16kg</span> ×5</span><span class="sep">·</span>
+<span class="i">swings <span class="chip k16">16kg</span> ×8</span>
+</div><div class="warmnote">Before the day’s first heavy lift, take one feel set of 5 with a lighter bell.</div>
+<div class="days">
+<article class="day">
+<div class="dhead"><span class="dn">Day A<span>Squat &amp; Press</span></span></div>
+<div class="dbody">
+<div class="pair solo"><div class="ph"><span class="tag tg-solo">Solo</span><span class="hint">rest 2 min</span></div><div class="ex"><div class="slot"><span class="code">1</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Double KB front squat</div><div class="note">elbows up, sit deep</div>
+<div class="m w1"><span class="sr">4 × 5</span><span class="chip k16">2 × 16kg</span></div>
+<div class="m w2"><span class="sr">4 × 6</span><span class="chip k16">2 × 16kg</span></div>
+<div class="m w3"><span class="sr">5 × 5</span><span class="chip k16">2 × 16kg</span><span class="bump">▲ extra set</span></div>
+<div class="m w4"><span class="sr">5 × 6</span><span class="chip k16">2 × 16kg</span></div>
+</div></div></div>
+<div class="pair solo"><div class="ph"><span class="tag tg-solo">Solo</span><span class="hint">rest 90s</span></div><div class="ex"><div class="slot"><span class="code">2</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Single-arm press</div><div class="note">brace; small leg drive OK · per side</div>
+<div class="m w1"><span class="sr">4 × 5</span><span class="chip k12">12kg</span></div>
+<div class="m w2"><span class="sr">4 × 6</span><span class="chip k12">12kg</span></div>
+<div class="m w3"><span class="sr">5 × 5</span><span class="chip k12">12kg</span><span class="bump">▲ extra set</span></div>
+<div class="m w4"><span class="sr">5 × 6</span><span class="chip k12">12kg</span></div>
+</div></div></div>
+<div class="pair">
+<div class="ph"><span class="tag">Superset</span><span class="hint">alternate 3A ↔ 3B · rest 45–60s</span></div>
+<div class="ex"><div class="slot"><span class="code">3A</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Double KB Romanian deadlift</div><div class="note">hips back, flat back</div><div class="wknote w4">3s lowering</div>
+<div class="m w1"><span class="sr">3 × 8</span><span class="chip k20">2 × 20kg</span></div>
+<div class="m w2"><span class="sr">3 × 10</span><span class="chip k20">2 × 20kg</span></div>
+<div class="m w3"><span class="sr">4 × 8</span><span class="chip k20">2 × 20kg</span><span class="bump">▲ extra set</span></div>
+<div class="m w4"><span class="sr">4 × 8</span><span class="chip k20">2 × 20kg</span></div>
+</div></div>
+<div class="ex"><div class="slot"><span class="code">3B</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Single-arm row</div><div class="note">flat back, elbow to hip · per side</div>
+<div class="m w1"><span class="sr">3 × 8</span><span class="chip k20">20kg</span></div>
+<div class="m w2"><span class="sr">3 × 10</span><span class="chip k20">20kg</span></div>
+<div class="m w3"><span class="sr">4 × 8</span><span class="chip k20">20kg</span><span class="bump">▲ extra set</span></div>
+<div class="m w4"><span class="sr">4 × 10</span><span class="chip k20">20kg</span></div>
+</div></div>
+</div>
+<div class="pair solo"><div class="ph"><span class="tag tg-solo">Solo</span><span class="hint">rest 60–90s</span></div><div class="ex"><div class="slot"><span class="code">4</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Hip thrust</div><div class="note">full extension, squeeze</div><div class="wknote w4">2s squeeze at top</div>
+<div class="m w1"><span class="sr">3 × 8</span><span class="chip k24">24kg</span><span class="chip kbw">+ band</span></div>
+<div class="m w2"><span class="sr">3 × 10</span><span class="chip k24">24kg</span><span class="chip kbw">+ band</span></div>
+<div class="m w3"><span class="sr">3 × 12</span><span class="chip k24">24kg</span><span class="chip kbw">+ band</span></div>
+<div class="m w4"><span class="sr">3 × 12</span><span class="chip k24">24kg</span><span class="chip kbw">+ band</span></div>
+</div></div></div>
+<div class="pair solo"><div class="ph"><span class="tag tg-fin">Finish</span><span class="hint">rest as needed</span></div><div class="ex"><div class="slot"><span class="code">5</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Farmer carry</div><div class="note">tall &amp; braced, no swing</div>
+<div class="m w1"><span class="sr">3 × 25s</span><span class="chip k24">2 × 24kg</span></div>
+<div class="m w2"><span class="sr">3 × 30s</span><span class="chip k24">2 × 24kg</span></div>
+<div class="m w3"><span class="sr">3 × 40s</span><span class="chip k24">2 × 24kg</span><span class="bump">▲ time</span></div>
+<div class="m w4"><span class="sr">3 × 40s</span><span class="chip k24">2 × 24kg</span></div>
+</div></div></div>
+</div>
+<div class="dfoot"><b>The 24s:</b> short, proud carries. Grip will be the limiter — that’s the point.</div>
+</article>
+<article class="day">
+<div class="dhead"><span class="dn">Day B<span>Hinge &amp; Glutes</span></span></div>
+<div class="dbody">
+<div class="pair solo"><div class="ph"><span class="tag tg-solo">Solo</span><span class="hint">rest 2 min</span></div><div class="ex"><div class="slot"><span class="code">1</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Double KB deadlift</div><div class="note">flat back, bells close</div>
+<div class="m w1"><span class="sr">4 × 6</span><span class="chip k20">2 × 20kg</span></div>
+<div class="m w2"><span class="sr">4 × 8</span><span class="chip k20">2 × 20kg</span></div>
+<div class="m w3"><span class="sr">4 × 5</span><span class="chip k24">2 × 24kg</span><span class="bump">▲ new bells</span></div>
+<div class="m w4"><span class="sr">4 × 6</span><span class="chip k24">2 × 24kg</span></div>
+</div></div></div>
+<div class="pair solo"><div class="ph"><span class="tag tg-pow">Power</span><span class="hint">full rest between sets</span></div><div class="ex"><div class="slot"><span class="code">2</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Heavy two-hand swing</div><div class="note">hip snap; stop if it softens</div>
+<div class="m w1"><span class="sr">5 × 8</span><span class="chip k20">20kg</span></div>
+<div class="m w2"><span class="sr">6 × 8</span><span class="chip k20">20kg</span><span class="bump">▲ extra set</span></div>
+<div class="m w3"><span class="sr">5 × 6</span><span class="chip k24">24kg</span><span class="bump">▲ new bell</span></div>
+<div class="m w4"><span class="sr">5 × 8</span><span class="chip k24">24kg</span></div>
+</div></div></div>
+<div class="pair">
+<div class="ph"><span class="tag">Superset</span><span class="hint">alternate 3A ↔ 3B · rest 45–60s</span></div>
+<div class="ex"><div class="slot"><span class="code">3A</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Walking lunge or step-up</div><div class="note">torso tall, front heel · per side</div>
+<div class="m w1"><span class="sr">3 × 8</span><span class="chip k12">12kg</span></div>
+<div class="m w2"><span class="sr">3 × 10</span><span class="chip k12">12kg</span></div>
+<div class="m w3"><span class="sr">3 × 8</span><span class="chip k16">16kg</span><span class="bump">▲ new bell</span></div>
+<div class="m w4"><span class="sr">3 × 10</span><span class="chip k16">16kg</span></div>
+</div></div>
+<div class="ex"><div class="slot"><span class="code">3B</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Floor press</div><div class="note">elbows ~45°, control down · per side</div><div class="wknote w4">1s pause at the bottom</div>
+<div class="m w1"><span class="sr">3 × 8</span><span class="chip k16">16kg</span></div>
+<div class="m w2"><span class="sr">3 × 9</span><span class="chip k16">16kg</span></div>
+<div class="m w3"><span class="sr">3 × 10</span><span class="chip k16">16kg</span></div>
+<div class="m w4"><span class="sr">3 × 10</span><span class="chip k16">16kg</span></div>
+</div></div>
+</div>
+<div class="pair">
+<div class="ph"><span class="tag">Band circuit</span><span class="hint">4A straight into 4B, then rest · 3 rounds</span></div>
+<div class="ex"><div class="slot"><span class="code">4A</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Seated band abduction</div><div class="note">drive the knees out</div>
+<div class="m w1"><span class="sr">×15</span><span class="chip kbw">band</span></div>
+<div class="m w2"><span class="sr">×15</span><span class="chip kbw">band</span></div>
+<div class="m w3"><span class="sr">×15</span><span class="chip kbw">heavier band</span><span class="bump">▲ band</span></div>
+<div class="m w4"><span class="sr">×15</span><span class="chip kbw">heavier band</span></div>
+</div></div>
+<div class="ex"><div class="slot"><span class="code">4B</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Band lateral walk</div><div class="note">knees out, hips level</div>
+<div class="m w1"><span class="sr">×10/way</span><span class="chip kbw">band</span></div>
+<div class="m w2"><span class="sr">×10/way</span><span class="chip kbw">band</span></div>
+<div class="m w3"><span class="sr">×10/way</span><span class="chip kbw">heavier band</span></div>
+<div class="m w4"><span class="sr">×10/way</span><span class="chip kbw">heavier band</span></div>
+</div></div>
+</div>
+<div class="pair solo"><div class="ph"><span class="tag tg-fin">Finish</span><span class="hint">rest as needed</span></div><div class="ex"><div class="slot"><span class="code">5</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
+<div class="nm">Suitcase carry</div><div class="note">stay square, don't lean · per side</div>
+<div class="m w1"><span class="sr">2 × 40s</span><span class="chip k20">20kg</span></div>
+<div class="m w2"><span class="sr">2 × 40s</span><span class="chip k20">20kg</span></div>
+<div class="m w3"><span class="sr">2 × 50s</span><span class="chip k20">20kg</span><span class="bump">▲ time</span></div>
+<div class="m w4"><span class="sr">2 × 50s</span><span class="chip k20">20kg</span></div>
+</div></div></div>
+</div>
+<div class="dfoot"><b>Heaviest day of the program.</b> Two full rest days around it are non-negotiable.</div>
+</article>
+<article class="day">
+<div class="dhead"><span class="dn">Day C<span>Intervals</span></span></div>
+<div class="dbody">
+<div class="circuit">
+<div class="ch">
+<div class="m w1"><span class="rounds">30s ON / 30s OFF ×8</span><span class="hint">swing intervals · crisp, powerful reps only</span></div>
+<div class="m w2"><span class="rounds">30s ON / 30s OFF ×10</span><span class="hint">crisp reps only</span><span class="bump">▲ rounds</span></div>
+<div class="m w3"><span class="rounds">30s ON / 30s OFF ×10</span><span class="hint">crisp reps only</span></div>
+<div class="m w4"><span class="rounds">30s ON / 30s OFF ×10</span><span class="hint">match round-1 reps every round</span></div>
+</div>
+<div class="ex"><div class="slot"><span class="code">1</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body"><div class="nm">Two-hand swing</div><div class="note">hip snap, not a squat</div>
+<div class="m w1"><span class="chip k16">16kg</span></div>
+<div class="m w2"><span class="chip k16">16kg</span></div>
+<div class="m w3"><span class="chip k20">20kg</span><span class="bump">▲ new bell</span></div>
+<div class="m w4"><span class="chip k20">20kg</span></div>
+</div></div>
+</div>
+<div class="circuit">
+<div class="ch"><div class="m w1"><span class="rounds">3 ROUNDS</span><span class="hint">brisk · 60–90s between rounds</span></div>
+<div class="m w2"><span class="rounds">3 ROUNDS</span><span class="hint">brisk · 60–90s between rounds</span></div>
+<div class="m w3"><span class="rounds">3 ROUNDS</span><span class="hint">brisk · 60–90s between rounds</span></div>
+<div class="m w4"><span class="rounds">3 ROUNDS</span><span class="hint">brisk · 60–90s between rounds</span></div></div>
+<div class="ex"><div class="slot"><span class="code">1</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body"><div class="nm">Goblet squat</div><div class="note">sit deep, chest tall</div>
+<div class="m w1"><span class="sr">×8</span><span class="chip k16">16kg</span></div>
+<div class="m w2"><span class="sr">×8</span><span class="chip k16">16kg</span></div>
+<div class="m w3"><span class="sr">×8</span><span class="chip k16">16kg</span></div>
+<div class="m w4"><span class="sr">×8</span><span class="chip k16">16kg</span></div>
+</div></div>
+<div class="ex"><div class="slot"><span class="code">2</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body"><div class="nm">Push-up</div><div class="note">straight line, full lockout</div>
+<div class="m w1"><span class="sr">×8</span><span class="chip kbw">BW</span></div>
+<div class="m w2"><span class="sr">×8</span><span class="chip kbw">BW</span></div>
+<div class="m w3"><span class="sr">×10</span><span class="chip kbw">BW</span></div>
+<div class="m w4"><span class="sr">×10</span><span class="chip kbw">BW</span></div>
+</div></div>
+<div class="ex"><div class="slot"><span class="code">3</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body"><div class="nm">Single-arm row</div><div class="note">flat back, elbow to hip · per side</div>
+<div class="m w1"><span class="sr">×8</span><span class="chip k16">16kg</span></div>
+<div class="m w2"><span class="sr">×8</span><span class="chip k16">16kg</span></div>
+<div class="m w3"><span class="sr">×8</span><span class="chip k16">16kg</span></div>
+<div class="m w4"><span class="sr">×8</span><span class="chip k16">16kg</span></div>
+</div></div>
+</div>
+<div class="circuit">
+<div class="ch"><div class="m w1"><span class="rounds">FINISH</span><span class="hint">glute finisher ×2 rounds</span></div>
+<div class="m w2"><span class="rounds">FINISH</span><span class="hint">glute finisher ×2 rounds</span></div>
+<div class="m w3"><span class="rounds">FINISH</span><span class="hint">glute finisher ×2 rounds</span></div>
+<div class="m w4"><span class="rounds">FINISH</span><span class="hint">glute finisher ×2 rounds</span></div></div>
+<div class="ex"><div class="slot"><span class="code">1</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body"><div class="nm">Banded glute bridge ×15 · seated abduction ×20 · lateral walk ×10/way</div><div class="note">constant band tension</div>
+<div class="m w1"><span class="chip kbw">band</span></div><div class="m w2"><span class="chip kbw">band</span></div>
+<div class="m w3"><span class="chip kbw">band</span></div><div class="m w4"><span class="chip kbw">band</span></div>
+</div></div>
+</div>
+</div>
+<div class="dfoot"><b>Stop a round early</b> rather than letting swing form decay — sloppy power reps train nothing good.</div>
+</article>
+</div>
+<button class="reset-week">Reset week</button></section>
+<p class="tip">Tap any exercise to tick it off — progress saves automatically on this device.</p>
+</div>
+<script>
+  var STORE_KEY = 'kbProgress.v1';
+
+  // Give every exercise a stable key (block id + its order within that block)
+  // and load any saved completion state before wiring up interactions.
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(STORE_KEY)) || {}; } catch(e){ saved = {}; }
+
+  function save(){
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(saved)); } catch(e){}
+  }
+
+  document.querySelectorAll('.block').forEach(function(sec){
+    sec.querySelectorAll('.ex').forEach(function(ex, i){
+      var key = sec.id + '-' + i;
+      ex.dataset.key = key;
+      (saved[key] || []).forEach(function(wk){ ex.classList.add('done-' + wk); });
+    });
+  });
+
+  function currentWk(sec){
+    return ['wk1','wk2','wk3','wk4'].find(function(c){return sec.classList.contains(c);}) || 'wk1';
+  }
+  function refreshDone(sec){
+    var wk = currentWk(sec);
+    sec.querySelectorAll('.ex').forEach(function(ex){
+      ex.classList.toggle('done', ex.classList.contains('done-' + wk));
+    });
+  }
+
+  // Per-block completion %: every exercise can be ticked across all 4 weeks.
+  var BTYPE = {b1:'Rebuild', b2:'Strength', b3:'Power'};
+  function updateBlockPct(){
+    ['b1','b2','b3'].forEach(function(id){
+      var nEx = document.querySelectorAll('#'+id+' .ex').length;
+      var total = nEx * 4, done = 0;
+      Object.keys(saved).forEach(function(k){
+        if (k.indexOf(id + '-') === 0) done += (saved[k] || []).length;
+      });
+      var pct = total ? Math.round(done / total * 100) : 0;
+      var tab = document.querySelector('.tab[data-b="' + id + '"]');
+      if (tab){
+        var small = tab.querySelector('small');
+        if (small) small.textContent = BTYPE[id] + ' – ' + pct + '% completed';
+        tab.classList.toggle('done', pct === 100);
+      }
+    });
+  }
+
+  function updateResetLabel(sec){
+    var btn = sec.querySelector('.reset-week');
+    var active = sec.querySelector('.wtab.on');
+    if (btn && active) btn.textContent = 'Reset ' + active.textContent.toLowerCase();
+  }
+  function resetWeek(sec){
+    var wk = currentWk(sec);
+    sec.querySelectorAll('.ex').forEach(function(ex){
+      ex.classList.remove('done-' + wk);
+      var key = ex.dataset.key;
+      if (saved[key]){
+        var i = saved[key].indexOf(wk);
+        if (i !== -1) saved[key].splice(i, 1);
+        if (!saved[key].length) delete saved[key];
+      }
+    });
+    refreshDone(sec); save(); updateBlockPct();
+  }
+
+  // Apply the initially-visible week's ticks for each block on load.
+  // Per-week collapse state: key = blockId | week | dayIndex
+  var collapsed = {};
+  function ckey(secId, wk, di){ return secId + '|' + wk + '|' + di; }
+  function applyCollapse(sec){
+    var wk = currentWk(sec);
+    sec.querySelectorAll('.day').forEach(function(day, di){
+      day.classList.toggle('closed', !!collapsed[ckey(sec.id, wk, di)]);
+    });
+  }
+
+  document.querySelectorAll('.block').forEach(function(sec){ refreshDone(sec); updateResetLabel(sec); applyCollapse(sec); });
+  updateBlockPct();
+  document.querySelectorAll('.reset-week').forEach(function(btn){
+    btn.addEventListener('click', function(){ resetWeek(btn.closest('.block')); });
+  });
+
+  document.querySelectorAll('.tab').forEach(function(t){
+    t.addEventListener('click', function(){
+      document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
+      document.querySelectorAll('.block').forEach(function(b){b.classList.remove('on');});
+      t.classList.add('on');
+      var sec = document.getElementById(t.dataset.b);
+      sec.classList.add('on');
+      applyCollapse(sec);
+      window.scrollTo({top:0});
+    });
+  });
+  document.querySelectorAll('.wtabs').forEach(function(wt){
+    wt.querySelectorAll('.wtab').forEach(function(w){
+      w.addEventListener('click', function(){
+        var sec = wt.closest('.block');
+        wt.querySelectorAll('.wtab').forEach(function(x){x.classList.remove('on');});
+        w.classList.add('on');
+        sec.classList.remove('wk1','wk2','wk3','wk4');
+        sec.classList.add('wk' + w.dataset.w);
+        refreshDone(sec);
+        updateResetLabel(sec);
+        applyCollapse(sec);
+      });
+    });
+  });
+  document.querySelectorAll('.dhead').forEach(function(h){
+    h.addEventListener('click', function(){
+      var day = h.closest('.day');
+      var sec = h.closest('.block');
+      var wk = currentWk(sec);
+      var di = Array.prototype.indexOf.call(sec.querySelectorAll('.day'), day);
+      var nowClosed = day.classList.toggle('closed');
+      var k = ckey(sec.id, wk, di);
+      if (nowClosed) collapsed[k] = true; else delete collapsed[k];
+    });
+  });
+  document.querySelectorAll('.ex').forEach(function(r){
+    r.addEventListener('click', function(){
+      var sec = r.closest('.block');
+      var wk = currentWk(sec);
+      r.classList.toggle('done-' + wk);
+      var on = r.classList.contains('done-' + wk);
+      r.classList.toggle('done', on);
+
+      var key = r.dataset.key;
+      var list = saved[key] || [];
+      var idx = list.indexOf(wk);
+      if (on && idx === -1) list.push(wk);
+      if (!on && idx !== -1) list.splice(idx, 1);
+      if (list.length) saved[key] = list; else delete saved[key];
+      save();
+      updateBlockPct();
+    });
+  });
+</script>
+</body>
+</html>
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
