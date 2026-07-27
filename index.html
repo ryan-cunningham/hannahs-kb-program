@@ -5,6 +5,14 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>12-Week Kettlebell Program</title>
+<meta name="theme-color" content="#0B4008"/>
+<meta name="color-scheme" content="dark"/>
+<link href="manifest.webmanifest" rel="manifest"/>
+<link href="icon-192.png" rel="icon"/>
+<link href="icon-192.png" rel="apple-touch-icon"/>
+<meta content="yes" name="mobile-web-app-capable"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&amp;family=Barlow:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <style>
@@ -19,7 +27,9 @@
     --bw:#5B6167;  --bwbg:#ECEDE9;
     --go:#1f5c3d; --done:#e7eee9; --mint:#d2e3d4; --on-mint:#12210f;
     --pow:#B05A12; --powbg:#F9E9DB;
+    --tmy:#ffda03; --on-tmy:#1a1a12;
   }
+  :root{color-scheme:dark;}
   *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
   body{margin:0; background:var(--paper); color:var(--ink);
     font-family:'Barlow', system-ui, -apple-system, sans-serif; font-size:15px; line-height:1.35;}
@@ -164,14 +174,105 @@
   .bench .items{display:flex; flex-wrap:wrap; gap:6px 18px; font-weight:600; font-size:14px;}
   .bench .items span b{color:#fff;}
   .tip{color:#a9c3a6; font-size:12.5px; text-align:center; margin-top:14px;}
-  .reset-week{display:block; margin:18px auto 0; padding:8px 18px; background:transparent;
-    border:1px solid rgba(255,255,255,.30); color:#c3dabf; border-radius:8px; cursor:pointer;
-    font-family:'Barlow Condensed'; font-weight:700; text-transform:uppercase;
-    letter-spacing:.06em; font-size:14px;}
+  /* footer row: reset week (left) + timer (right), matched size */
+  .foot-row{display:flex; gap:10px; max-width:520px; margin:18px auto 0;}
+  .foot-row button{
+    flex:1 1 0; min-width:0; padding:11px 8px; border-radius:9px;
+    background:transparent; cursor:pointer; line-height:1.15;
+    font-family:'Barlow Condensed','Barlow',sans-serif; font-weight:700;
+    text-transform:uppercase; letter-spacing:.06em; font-size:15px;
+    transition:border-color .13s ease, color .13s ease, background .13s ease;
+  }
+  .reset-week{border:1px solid rgba(255,255,255,.30); color:#c3dabf;}
   .reset-week:hover{border-color:rgba(255,255,255,.6); color:#fff;}
+
+  /* ---- session timer ---- */
+  .timer-open{border:1px solid rgba(255,218,3,.5); color:var(--tmy);}
+  .timer-open:hover{background:rgba(255,218,3,.12); border-color:var(--tmy);}
+  body.tmr-on .timer-open{opacity:.25; pointer-events:none;}
+  body.tmr-on .wrap{padding-bottom:300px;}
+
+  .tmr{
+    position:fixed; bottom:10px; left:50%;
+    width:min(430px, calc(100vw - 18px));
+    transform:translateX(-50%) translateY(150%);
+    opacity:0; pointer-events:none;
+    background:#0A0A08; border:1px solid #2c2c22; border-radius:14px;
+    box-shadow:0 -6px 44px -10px rgba(0,0,0,.85);
+    padding:9px 12px 12px; z-index:900;
+    transition:transform .24s cubic-bezier(.3,.85,.35,1), opacity .16s ease;
+  }
+  .tmr.show{transform:translateX(-50%) translateY(0); opacity:1; pointer-events:auto;}
+  .tmr.ring{animation:tmrRing .52s ease-in-out 6;}
+  @keyframes tmrRing{
+    0%,100%{background:#0A0A08; border-color:#2c2c22;}
+    50%{background:#3a3200; border-color:var(--tmy);}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .tmr{transition:opacity .16s ease;}
+    .tmr.ring{animation:none; border-color:var(--tmy);}
+  }
+
+  .tmr-top{display:flex; align-items:center; gap:6px;}
+  .tmr-mode{
+    flex:0 0 auto; padding:5px 13px; border-radius:20px; cursor:pointer;
+    background:transparent; border:1px solid rgba(255,218,3,.28);
+    color:#8f8f84; font-family:'Barlow',sans-serif;
+    font-size:11.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+    transition:all .13s ease;
+  }
+  .tmr-mode.on{background:var(--tmy); border-color:var(--tmy); color:var(--on-tmy);}
+  .tmr-x{
+    margin-left:auto; width:32px; height:32px; flex:0 0 auto;
+    background:transparent; border:none; cursor:pointer;
+    color:#8f8f84; font-size:23px; line-height:1;
+    border-radius:8px; transition:all .13s ease;
+  }
+  .tmr-x:hover{background:rgba(255,255,255,.08); color:#f4f4f0;}
+
+  .tmr-time{
+    text-align:center; font-family:'Barlow Condensed',sans-serif; font-weight:700;
+    font-size:clamp(44px,13.5vw,60px); line-height:1; color:#EDEDE6;
+    font-variant-numeric:tabular-nums; letter-spacing:.01em;
+    margin:2px 0 9px; user-select:none; -webkit-user-select:none;
+  }
+  .tmr-time.zero{color:var(--tmy);}
+
+  .tmr-row{display:flex; gap:6px; margin-bottom:7px;}
+  .tmr-row.hide{display:none;}
+  .tmr-btn{
+    flex:1; padding:10px 4px; border-radius:9px; cursor:pointer;
+    background:rgba(255,218,3,.08); border:1px solid rgba(255,218,3,.22);
+    color:#E4E4DA; font-family:'Barlow Condensed',sans-serif; font-weight:700;
+    font-size:17px; letter-spacing:.03em; transition:all .12s ease;
+  }
+  .tmr-btn:hover{background:rgba(255,218,3,.18); border-color:rgba(255,218,3,.48);}
+  .tmr-btn.sel{background:var(--tmy); border-color:var(--tmy); color:var(--on-tmy);}
+  .tmr-btn.hide{display:none;}
+  .tmr-go{
+    flex:2.2; background:var(--tmy); border-color:var(--tmy); color:var(--on-tmy);
+    font-size:18px; text-transform:uppercase; letter-spacing:.07em;
+  }
+  .tmr-go:hover{background:#ffe64d; border-color:#ffe64d;}
+  .tmr-reset{
+    display:block; margin:1px auto 0; padding:5px 15px;
+    background:transparent; border:1px solid rgba(255,218,3,.24);
+    color:#8f8f84; border-radius:8px; cursor:pointer;
+    font-family:'Barlow',sans-serif; font-size:11.5px; letter-spacing:.03em;
+    transition:all .13s ease;
+  }
+  .tmr-reset:hover{border-color:#e07a63; color:#f0b3a6;}
+  .tmr-hint{
+    text-align:center; color:#77776e; font-size:10.5px;
+    letter-spacing:.02em; margin:7px 0 0;
+  }
+  .tmr button:focus-visible, .foot-row button:focus-visible{
+    outline:2px solid var(--tmy); outline-offset:2px;
+  }
 
   @media print{
     .tabs,.tip{display:none;}
+    .foot-row,.timer-open,.tmr{display:none !important;}
     .block{display:block !important; page-break-after:always;}
     .day.closed .dbody, .day.closed .dfoot{display:flex !important;}
     .dhead::after{display:none;}
@@ -371,7 +472,7 @@
 <div class="dfoot"><b>Chaotic week?</b> Days A and B are the program — this day is the first to drop.</div>
 </article>
 </div>
-<button class="reset-week">Reset week</button></section>
+<div class="foot-row"><button class="reset-week" type="button">Reset week</button><button class="timer-open" type="button">Timer</button></div></section>
 <!-- ================= BLOCK 2 ================= -->
 <section class="block wk1" id="b2">
 <div aria-label="Week" class="wtabs" role="tablist">
@@ -550,7 +651,7 @@
 <div class="dfoot"><b>Pace check:</b> if a minute’s work takes more than ~35s, drop the reps, not the form.</div>
 </article>
 </div>
-<button class="reset-week">Reset week</button></section>
+<div class="foot-row"><button class="reset-week" type="button">Reset week</button><button class="timer-open" type="button">Timer</button></div></section>
 <!-- ================= BLOCK 3 ================= -->
 <section class="block wk1" id="b3">
 <div aria-label="Week" class="wtabs" role="tablist">
@@ -736,7 +837,7 @@
 <div class="dfoot"><b>Stop a round early</b> rather than letting swing form decay — sloppy power reps train nothing good.</div>
 </article>
 </div>
-<button class="reset-week">Reset week</button></section>
+<div class="foot-row"><button class="reset-week" type="button">Reset week</button><button class="timer-open" type="button">Timer</button></div></section>
 <p class="tip">Tap any exercise to tick it off — progress saves automatically on this device.</p>
 </div>
 <script>
@@ -879,5 +980,234 @@
     });
   });
 </script>
+
+<div aria-label="Session timer" class="tmr" id="tmr" role="dialog">
+<div class="tmr-top">
+<button class="tmr-mode" id="mSw" type="button">Stopwatch</button>
+<button class="tmr-mode on" id="mRest" type="button">Rest</button>
+<button aria-label="Close timer" class="tmr-x" id="tmrX" type="button">&times;</button>
+</div>
+<div class="tmr-time" id="tmrTime">1:00</div>
+<div class="tmr-row" id="rowPre">
+<button class="tmr-btn" data-s="30" type="button">30s</button>
+<button class="tmr-btn" data-s="45" type="button">45s</button>
+<button class="tmr-btn sel" data-s="60" type="button">60s</button>
+<button class="tmr-btn" data-s="90" type="button">90s</button>
+</div>
+<div class="tmr-row">
+<button class="tmr-btn" id="tmrDown" type="button">&minus;15</button>
+<button class="tmr-btn tmr-go" id="tmrGo" type="button">Start</button>
+<button class="tmr-btn" id="tmrUp" type="button">+15</button>
+</div>
+<button class="tmr-reset" id="tmrRe" type="button">Reset</button>
+<p class="tmr-hint" id="tmrHint">Tap a preset to start resting straight away</p>
+</div>
+
+<script>
+/* ---------- session timer: countdown presets + stopwatch ---------- */
+(function(){
+  var panel=document.getElementById('tmr');
+  var openBtns=document.querySelectorAll('.timer-open');
+  var disp=document.getElementById('tmrTime');
+  var go=document.getElementById('tmrGo');
+  var rowPre=document.getElementById('rowPre');
+  var dn=document.getElementById('tmrDown'), up=document.getElementById('tmrUp');
+  var rst=document.getElementById('tmrRe'), hint=document.getElementById('tmrHint');
+  var mRest=document.getElementById('mRest'), mSw=document.getElementById('mSw');
+  var closeX=document.getElementById('tmrX');
+
+  var mode='rest', running=false, tick=null, wl=null, ac=null;
+  var target=60000, remain=60000, endAt=0;   /* countdown state */
+  var swAcc=0, swStart=0;                    /* stopwatch state */
+
+  function pad(n){ return n<10 ? '0'+n : ''+n; }
+  function fmtDown(ms){
+    if(ms<0) ms=0;
+    var t=Math.ceil(ms/1000);
+    return Math.floor(t/60)+':'+pad(t%60);
+  }
+  function fmtUp(ms){
+    var t=Math.floor(ms/1000);
+    return Math.floor(t/60)+':'+pad(t%60)+'.'+pad(Math.floor((ms%1000)/10));
+  }
+
+  /* ---- audio: primed on the first tap so mobile autoplay rules allow the beep ---- */
+  function prime(){
+    try{
+      if(!ac){
+        var AC=window.AudioContext||window.webkitAudioContext;
+        if(AC) ac=new AC();
+      }
+      if(ac && ac.state==='suspended') ac.resume();
+    }catch(e){}
+  }
+  function beep(){
+    try{
+      if(!ac) return;
+      if(ac.state==='suspended') ac.resume();
+      var t0=ac.currentTime;
+      [0,0.30,0.60].forEach(function(off){
+        var o=ac.createOscillator(), g=ac.createGain();
+        o.type='sine'; o.frequency.value=880;
+        g.gain.setValueAtTime(0.0001, t0+off);
+        g.gain.exponentialRampToValueAtTime(0.5, t0+off+0.012);
+        g.gain.exponentialRampToValueAtTime(0.0001, t0+off+0.24);
+        o.connect(g); g.connect(ac.destination);
+        o.start(t0+off); o.stop(t0+off+0.26);
+      });
+    }catch(e){}
+  }
+
+  /* ---- screen wake lock while a timer runs ---- */
+  function lock(){
+    try{
+      if('wakeLock' in navigator && !wl){
+        navigator.wakeLock.request('screen').then(function(s){
+          wl=s;
+          s.addEventListener('release', function(){ wl=null; });
+        }).catch(function(){});
+      }
+    }catch(e){}
+  }
+  function unlock(){
+    try{ if(wl){ wl.release(); wl=null; } }catch(e){}
+  }
+  document.addEventListener('visibilitychange', function(){
+    if(document.visibilityState==='visible'){
+      if(running) lock();
+      paint();
+    }
+  });
+
+  var lastTxt='';
+  function setDisp(txt){ if(txt!==lastTxt){ disp.textContent=txt; lastTxt=txt; } }
+
+  function paint(){
+    var ms;
+    if(mode==='rest'){
+      ms = running ? (endAt-Date.now()) : remain;
+      setDisp(fmtDown(ms));
+      if(ms<=0){ disp.classList.add('zero'); } else { disp.classList.remove('zero'); }
+      if(running && ms<=0) finish();
+    } else {
+      ms = running ? (swAcc + (Date.now()-swStart)) : swAcc;
+      setDisp(fmtUp(ms));
+    }
+  }
+  /* rAF drives the display: hundredths need a faster refresh than setInterval
+     gave us, and the text is only rewritten when it actually changes. */
+  function loop(){ paint(); tick = running ? requestAnimationFrame(loop) : null; }
+  function startTick(){ if(!tick) tick=requestAnimationFrame(loop); }
+  function stopTick(){ if(tick){ cancelAnimationFrame(tick); tick=null; } }
+
+  function finish(){
+    running=false; remain=0; stopTick();
+    setDisp('0:00'); disp.classList.add('zero');
+    go.textContent='Start';
+    beep();
+    if(navigator.vibrate) navigator.vibrate([300,120,300,120,420]);
+    panel.classList.add('ring');
+    setTimeout(function(){ panel.classList.remove('ring'); }, 3200);
+    unlock();
+  }
+
+  function start(){
+    prime();
+    if(mode==='rest'){
+      if(remain<=0) remain=target;
+      endAt=Date.now()+remain;
+      disp.classList.remove('zero');
+    } else {
+      swStart=Date.now();
+    }
+    running=true; go.textContent='Pause';
+    panel.classList.remove('ring');
+    lock(); startTick(); paint();
+  }
+  function pause(){
+    if(mode==='rest'){ remain=Math.max(0, endAt-Date.now()); }
+    else { swAcc += Date.now()-swStart; }
+    running=false; go.textContent='Start';
+    stopTick(); unlock(); paint();
+  }
+  function reset(){
+    running=false; stopTick(); unlock();
+    if(mode==='rest'){ remain=target; } else { swAcc=0; swStart=0; }
+    go.textContent='Start';
+    panel.classList.remove('ring'); disp.classList.remove('zero');
+    paint();
+  }
+  function adjust(d){
+    if(mode!=='rest') return;
+    if(running){
+      endAt=Math.max(Date.now()+1000, endAt+d);
+    } else {
+      remain=Math.max(5000, remain+d);
+      target=remain;
+      disp.classList.remove('zero');
+    }
+    clearSel();
+    paint();
+  }
+  function clearSel(){
+    var b=rowPre.querySelectorAll('.tmr-btn');
+    for(var i=0;i<b.length;i++) b[i].classList.remove('sel');
+  }
+
+  function setMode(m){
+    if(m===mode) return;
+    if(running) pause();
+    mode=m;
+    mRest.classList.toggle('on', m==='rest');
+    mSw.classList.toggle('on', m==='sw');
+    rowPre.classList.toggle('hide', m!=='rest');
+    dn.classList.toggle('hide', m!=='rest');
+    up.classList.toggle('hide', m!=='rest');
+    hint.textContent = (m==='rest')
+      ? 'Tap a preset to start resting straight away'
+      : 'Counts up \u2014 for holds, carries and rounds';
+    reset();
+  }
+
+  /* ---- wiring ---- */
+  for(var k=0;k<openBtns.length;k++){
+    openBtns[k].addEventListener('click', function(){
+      prime();
+      panel.classList.add('show');
+      document.body.classList.add('tmr-on');
+      paint();
+    });
+  }
+  closeX.addEventListener('click', function(){
+    if(running) pause();
+    panel.classList.remove('show');
+    document.body.classList.remove('tmr-on');
+    unlock();
+  });
+  go.addEventListener('click', function(){ running ? pause() : start(); });
+  rst.addEventListener('click', reset);
+  dn.addEventListener('click', function(){ adjust(-15000); });
+  up.addEventListener('click', function(){ adjust(15000); });
+  mRest.addEventListener('click', function(){ setMode('rest'); });
+  mSw.addEventListener('click', function(){ setMode('sw'); });
+
+  var pres=rowPre.querySelectorAll('.tmr-btn');
+  for(var i=0;i<pres.length;i++){
+    (function(b){
+      b.addEventListener('click', function(){
+        clearSel(); b.classList.add('sel');
+        target=(+b.dataset.s)*1000;
+        remain=target;
+        running=false; stopTick();
+        panel.classList.remove('ring');
+        start();                 /* one tap after a set = resting immediately */
+      });
+    })(pres[i]);
+  }
+
+  paint();
+})();
+</script>
 </body>
+
 </html>
