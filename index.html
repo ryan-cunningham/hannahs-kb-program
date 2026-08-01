@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>12-Week Kettlebell Program</title>
+<title>12-Week Strength Foundations Program</title>
 <meta name="theme-color" content="#0B4008"/>
 <meta name="color-scheme" content="dark"/>
 <link href="manifest.webmanifest" rel="manifest"/>
@@ -39,10 +39,6 @@
   .hd h1{font-family:'Barlow Condensed','Barlow',sans-serif; font-weight:800; color:#f4f4f0;
     font-size:clamp(30px,5vw,44px); letter-spacing:.01em; text-transform:uppercase; margin:0 0 2px;}
   .hd .sub{color:var(--mut); font-weight:500; margin:0 0 14px;}
-  .rule{background:var(--ink); color:#E7E9EC; border-radius:10px; padding:12px 16px; margin-bottom:12px; line-height:1.45;}
-  .rule b{color:#fff;}
-  .rule .t{font-family:'Barlow Condensed'; font-weight:700; text-transform:uppercase;
-    letter-spacing:.08em; font-size:13px; color:#B9C0C9; margin-right:2px;}
   .legend{display:flex; flex-wrap:wrap; gap:6px 14px; align-items:center;
     color:var(--mut); font-size:13px; margin-bottom:4px;}
   .legend .lg{display:flex; align-items:center; gap:6px;}
@@ -74,6 +70,15 @@
   .tab.done.on{border-color:#b89e00; border-width:2px;}
   .tab:focus-visible,.wtab:focus-visible{outline:2px solid var(--b12); outline-offset:2px;}
 
+  .consol{display:none; background:var(--card); border:1px solid var(--line);
+    border-radius:12px; padding:10px 14px; margin:0 0 12px; color:var(--ink);}
+  .consol b{display:inline-block; background:var(--tmy); color:var(--on-tmy);
+    border-radius:5px; padding:2px 7px; font-family:'Barlow Condensed';
+    font-weight:700; font-size:12.5px; letter-spacing:.09em; text-transform:uppercase;}
+  .consol .ct{display:block; margin-top:5px; color:var(--ink);
+    font-family:'Barlow'; font-size:13.5px; font-weight:600; line-height:1.45;}
+  .wk4 .consol{display:block;}
+
   .block{display:none;}
   .block.on{display:block;}
   .bhead{margin:14px 2px 10px;}
@@ -88,6 +93,13 @@
   .wtab.on{background:var(--mint); border:1.5px solid var(--mint); color:var(--on-mint);}
 
   .days{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+  /* Weeks 1-2 of Block 1 are the sessions Hannah actually completed under the
+     previously published program; weeks 3-4 use the revised program. */
+  .wk-early, .wk-late{display:none;}
+  .wk1 .wk-early, .wk2 .wk-early{display:block;}
+  .wk3 .wk-late, .wk4 .wk-late{display:block;}
+  .wk1 .days.wk-early, .wk2 .days.wk-early,
+  .wk3 .days.wk-late, .wk4 .days.wk-late{display:grid;}
   @media (max-width:900px){.days{grid-template-columns:1fr;}}
 
   .day{background:var(--card); border:1px solid var(--line); border-radius:14px;
@@ -284,22 +296,31 @@
 <body>
 <div class="wrap">
 <header class="hd">
-<h1>12-Week Kettlebell Program</h1>
+<h1>12-Week Strength Foundations Program</h1>
 </header>
 <nav aria-label="Program blocks" class="tabs">
-<button class="tab on" data-b="b1">Block 1<small>Rebuild – 0% completed</small></button>
-<button class="tab" data-b="b2">Block 2<small>Strength – 0% completed</small></button>
-<button class="tab" data-b="b3">Block 3<small>Power – 0% completed</small></button>
+<button class="tab on" data-b="b1">Block 1<small>Foundation – 0% completed</small>
+</button>
+<button class="tab" data-b="b2">Block 2<small>Build – 0% completed</small>
+</button>
+<button class="tab" data-b="b3">Block 3<small>Strength – 0% completed</small>
+</button>
 </nav>
-<!-- ================= BLOCK 1 ================= -->
+<!-- ================= B1 ================= -->
 <section class="block on wk1" id="b1">
 <div aria-label="Week" class="wtabs" role="tablist">
 <button class="wtab on" data-w="1">Week 1</button>
 <button class="wtab" data-w="2">Week 2</button>
 <button class="wtab" data-w="3">Week 3</button>
 <button class="wtab" data-w="4">Week 4</button>
-</div><p class="bdesc">Re-groove the patterns, condition the joints. Strength comes back fast.</p>
-<div class="warm">
+</div>
+<p class="bdesc wk-early">Re-groove the patterns, condition the joints. Strength comes back fast.</p>
+<p class="bdesc wk-late">Learn the movements across three full-body sessions, establish control and finish every workout with energy in reserve.</p>
+<div class="consol">
+<b>Week 4 · Consolidate</b>
+<span class="ct">Two working sets on most lifts, familiar loads, no new kettlebells and lower total volume. The purpose is to absorb the last three weeks, not to test progress.</span>
+</div>
+<div class="warm wk-early">
 <span class="t">Warm-up · every session</span>
 <span class="i">2 min easy movement</span><span class="sep">·</span>
 <span class="i">cat-cow ×8</span><span class="sep">·</span>
@@ -308,7 +329,22 @@
 <span class="i">goblet squat <span class="chip k8">8kg</span> ×5</span><span class="sep">·</span>
 <span class="i">swings <span class="chip k8">8kg</span> ×10</span>
 </div>
-<div class="days">
+<div class="warm wk-late">
+<span class="t">Warm-up</span>
+<span class="i">2 min easy movement</span>
+<span class="sep">·</span>
+<span class="i">cat-cow ×6</span>
+<span class="sep">·</span>
+<span class="i">bodyweight squat ×8</span>
+<span class="sep">·</span>
+<span class="i">glute bridge ×8</span>
+<span class="sep">·</span>
+<span class="i">band pull-apart ×10</span>
+<span class="sep">·</span>
+<span class="i">unloaded hip hinge ×8</span>
+</div>
+<div class="warmnote wk-late">About 5–7 minutes. Before the first primary lift, complete one or two easy ramp-up sets with a lighter kettlebell.</div>
+<div class="days wk-early">
 <article class="day">
 <div class="dhead"><span class="dn">Day A<span>Squat &amp; Press</span></span></div>
 <div class="dbody">
@@ -316,8 +352,7 @@
 <div class="nm">Goblet squat</div><div class="note">sit deep, chest tall</div>
 <div class="m w1"><span class="sr">3 × 8</span><span class="chip k12">12kg</span></div>
 <div class="m w2"><span class="sr">3 × 10</span><span class="chip k12">12kg</span></div>
-<div class="m w3"><span class="sr">3 × 12</span><span class="chip k12">12kg</span></div>
-<div class="m w4"><span class="sr">3 × 8</span><span class="chip k16">16kg</span><span class="bump">▲ new bell</span></div>
+
 </div></div></div>
 <div class="pair">
 <div class="ph"><span class="tag">Superset</span><span class="hint">alternate 2A ↔ 2B · rest 45–60s between moves</span></div>
@@ -325,15 +360,13 @@
 <div class="nm">Single-arm strict press</div><div class="note">strict, no back-lean · per side</div>
 <div class="m w1"><span class="sr">3 × 5</span><span class="chip k8">8kg</span></div>
 <div class="m w2"><span class="sr">3 × 6</span><span class="chip k8">8kg</span></div>
-<div class="m w3"><span class="sr">3 × 7</span><span class="chip k8">8kg</span></div>
-<div class="m w4"><span class="sr">3 × 8</span><span class="chip k8">8kg</span></div>
+
 </div></div>
 <div class="ex"><div class="slot"><span class="code">2B</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
 <div class="nm">Romanian deadlift</div><div class="note">hips back, flat back</div>
 <div class="m w1"><span class="sr">3 × 10</span><span class="chip k16">16kg</span></div>
 <div class="m w2"><span class="sr">3 × 12</span><span class="chip k16">16kg</span></div>
-<div class="m w3"><span class="sr">3 × 10</span><span class="chip k20">20kg</span><span class="bump">▲ new bell</span></div>
-<div class="m w4"><span class="sr">3 × 12</span><span class="chip k20">20kg</span></div>
+
 </div></div>
 </div>
 <div class="pair">
@@ -342,23 +375,20 @@
 <div class="nm">Single-arm row</div><div class="note">flat back, elbow to hip · per side</div>
 <div class="m w1"><span class="sr">3 × 10</span><span class="chip k12">12kg</span></div>
 <div class="m w2"><span class="sr">3 × 12</span><span class="chip k12">12kg</span></div>
-<div class="m w3"><span class="sr">3 × 8</span><span class="chip k16">16kg</span><span class="bump">▲ new bell</span></div>
-<div class="m w4"><span class="sr">3 × 10</span><span class="chip k16">16kg</span></div>
+
 </div></div>
 <div class="ex"><div class="slot"><span class="code">3B</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
 <div class="nm">Glute bridge</div><div class="note">squeeze hard at the top</div>
 <div class="m w1"><span class="sr">3 × 12</span><span class="chip k16">16kg</span></div>
 <div class="m w2"><span class="sr">3 × 15</span><span class="chip k16">16kg</span></div>
-<div class="m w3"><span class="sr">3 × 12</span><span class="chip k20">20kg</span><span class="bump">▲ new bell</span></div>
-<div class="m w4"><span class="sr">3 × 12</span><span class="chip k24">24kg</span><span class="bump">▲ new bell</span></div>
+
 </div></div>
 </div>
 <div class="pair solo"><div class="ph"><span class="tag tg-fin">Finish</span><span class="hint">rest as needed</span></div><div class="ex"><div class="slot"><span class="code">4</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
 <div class="nm">Farmer carry</div><div class="note">tall &amp; braced, no swing</div>
 <div class="m w1"><span class="sr">3 × 40s</span><span class="chip k16">2 × 16kg</span></div>
 <div class="m w2"><span class="sr">3 × 40s</span><span class="chip k16">2 × 16kg</span></div>
-<div class="m w3"><span class="sr">3 × 50s</span><span class="chip k16">2 × 16kg</span><span class="bump">▲ time</span></div>
-<div class="m w4"><span class="sr">3 × 50s</span><span class="chip k16">2 × 16kg</span></div>
+
 </div></div></div>
 </div>
 <div class="dfoot"><b>Press too heavy?</b> Use a small leg-drive push press, or floor press the 12kg for two weeks — then rejoin the numbers.</div>
@@ -370,15 +400,13 @@
 <div class="nm">KB deadlift</div><div class="note">hips back, flat back</div>
 <div class="m w1"><span class="sr">3 × 8</span><span class="chip k20">20kg</span></div>
 <div class="m w2"><span class="sr">3 × 10</span><span class="chip k20">20kg</span></div>
-<div class="m w3"><span class="sr">3 × 8</span><span class="chip k24">24kg</span><span class="bump">▲ new bell</span></div>
-<div class="m w4"><span class="sr">3 × 10</span><span class="chip k24">24kg</span></div>
+
 </div></div></div>
 <div class="pair solo"><div class="ph"><span class="tag tg-pow">Power</span><span class="hint">full rest between sets</span></div><div class="ex"><div class="slot"><span class="code">2</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
 <div class="nm">Two-hand swing</div><div class="note">hip snap, not a squat</div>
 <div class="m w1"><span class="sr">4 × 10</span><span class="chip k12">12kg</span></div>
 <div class="m w2"><span class="sr">5 × 10</span><span class="chip k12">12kg</span><span class="bump">▲ extra set</span></div>
-<div class="m w3"><span class="sr">4 × 10</span><span class="chip k16">16kg</span><span class="bump">▲ new bell</span></div>
-<div class="m w4"><span class="sr">5 × 10</span><span class="chip k16">16kg</span><span class="bump">▲ extra set</span></div>
+
 </div></div></div>
 <div class="pair">
 <div class="ph"><span class="tag">Superset</span><span class="hint">alternate 3A ↔ 3B · rest 45–60s</span></div>
@@ -386,32 +414,26 @@
 <div class="nm">Reverse lunge</div><div class="note">torso tall, drive front heel · per side</div>
 <div class="m w1"><span class="sr">3 × 8</span><span class="chip kbw">BW</span></div>
 <div class="m w2"><span class="sr">3 × 10</span><span class="chip kbw">BW</span></div>
-<div class="m w3"><span class="sr">3 × 8</span><span class="chip k8">8kg goblet</span><span class="bump">▲ add load</span></div>
-<div class="m w4"><span class="sr">3 × 10</span><span class="chip k8">8kg goblet</span></div>
+
 </div></div>
 <div class="ex"><div class="slot"><span class="code">3B</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
-<div class="nm">Single-arm floor press</div><div class="note">elbow ~45°, control down · per side</div><div class="wknote w4">3s lowering</div>
-<div class="m w1"><span class="sr">3 × 8</span><span class="chip k12">12kg</span></div>
+<div class="nm">Single-arm floor press</div><div class="note">elbow ~45°, control down · per side</div><div class="m w1"><span class="sr">3 × 8</span><span class="chip k12">12kg</span></div>
 <div class="m w2"><span class="sr">3 × 10</span><span class="chip k12">12kg</span></div>
-<div class="m w3"><span class="sr">3 × 12</span><span class="chip k12">12kg</span></div>
-<div class="m w4"><span class="sr">3 × 12</span><span class="chip k12">12kg</span></div>
+
 </div></div>
 </div>
 <div class="pair">
 <div class="ph"><span class="tag">Superset</span><span class="hint">alternate 4A ↔ 4B · rest 45–60s</span></div>
 <div class="ex"><div class="slot"><span class="code">4A</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
-<div class="nm">Band lateral walk</div><div class="note">knees out, hips level</div><div class="wknote w4">heavier band if easy</div>
-<div class="m w1"><span class="sr">3 × 12 steps/way</span><span class="chip kbw">band</span></div>
+<div class="nm">Band lateral walk</div><div class="note">knees out, hips level</div><div class="m w1"><span class="sr">3 × 12 steps/way</span><span class="chip kbw">band</span></div>
 <div class="m w2"><span class="sr">3 × 12 steps/way</span><span class="chip kbw">band</span></div>
-<div class="m w3"><span class="sr">3 × 15 steps/way</span><span class="chip kbw">band</span></div>
-<div class="m w4"><span class="sr">3 × 15 steps/way</span><span class="chip kbw">band</span></div>
+
 </div></div>
 <div class="ex"><div class="slot"><span class="code">4B</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
 <div class="nm">Dead bug</div><div class="note">lower back pressed flat</div>
 <div class="m w1"><span class="sr">3 × 6</span><span class="chip kbw">BW</span></div>
 <div class="m w2"><span class="sr">3 × 8</span><span class="chip kbw">BW</span></div>
-<div class="m w3"><span class="sr">3 × 8</span><span class="chip kbw">BW</span></div>
-<div class="m w4"><span class="sr">3 × 10</span><span class="chip kbw">BW</span></div>
+
 </div></div>
 </div>
 </div>
@@ -424,427 +446,1937 @@
 <div class="ch">
 <div class="m w1"><span class="rounds">3 ROUNDS</span><span class="hint">top to bottom, brisk · 90s rest between rounds</span></div>
 <div class="m w2"><span class="rounds">4 ROUNDS</span><span class="hint">90s rest between rounds</span><span class="bump">▲ extra round</span></div>
-<div class="m w3"><span class="rounds">4 ROUNDS</span><span class="hint">90s rest between rounds</span></div>
-<div class="m w4"><span class="rounds">4 ROUNDS</span><span class="hint">75s rest between rounds</span><span class="bump">▲ pace</span></div>
+
 </div>
 <div class="ex"><div class="slot"><span class="code">1</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body"><div class="nm">Two-hand swing</div><div class="note">hip snap, not a squat</div>
 <div class="m w1"><span class="sr">×12</span><span class="chip k12">12kg</span></div>
 <div class="m w2"><span class="sr">×12</span><span class="chip k12">12kg</span></div>
-<div class="m w3"><span class="sr">×12</span><span class="chip k16">16kg</span><span class="bump">▲ new bell</span></div>
-<div class="m w4"><span class="sr">×12</span><span class="chip k16">16kg</span></div>
+
 </div></div>
 <div class="ex"><div class="slot"><span class="code">2</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body"><div class="nm">Goblet squat</div><div class="note">sit deep, chest tall</div>
 <div class="m w1"><span class="sr">×10</span><span class="chip k12">12kg</span></div>
 <div class="m w2"><span class="sr">×10</span><span class="chip k12">12kg</span></div>
-<div class="m w3"><span class="sr">×10</span><span class="chip k12">12kg</span></div>
-<div class="m w4"><span class="sr">×10</span><span class="chip k12">12kg</span></div>
+
 </div></div>
 <div class="ex"><div class="slot"><span class="code">3</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body"><div class="nm">Push-up</div><div class="note">straight line, full lockout</div>
 <div class="m w1"><span class="sr">×6</span><span class="chip kbw">BW</span></div>
 <div class="m w2"><span class="sr">×8</span><span class="chip kbw">BW</span></div>
-<div class="m w3"><span class="sr">×8</span><span class="chip kbw">BW</span></div>
-<div class="m w4"><span class="sr">×10</span><span class="chip kbw">BW</span></div>
+
 </div></div>
 <div class="ex"><div class="slot"><span class="code">4</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body"><div class="nm">Single-arm row</div><div class="note">flat back, elbow to hip · per side</div>
 <div class="m w1"><span class="sr">×10</span><span class="chip k12">12kg</span></div>
 <div class="m w2"><span class="sr">×10</span><span class="chip k12">12kg</span></div>
-<div class="m w3"><span class="sr">×10</span><span class="chip k12">12kg</span></div>
-<div class="m w4"><span class="sr">×10</span><span class="chip k12">12kg</span></div>
+
 </div></div>
 <div class="ex"><div class="slot"><span class="code">5</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body"><div class="nm">Suitcase carry</div><div class="note">stay square, don't lean · per side</div>
 <div class="m w1"><span class="sr">25s</span><span class="chip k16">16kg</span></div>
 <div class="m w2"><span class="sr">30s</span><span class="chip k16">16kg</span></div>
-<div class="m w3"><span class="sr">40s</span><span class="chip k16">16kg</span></div>
-<div class="m w4"><span class="sr">40s</span><span class="chip k16">16kg</span></div>
+
 </div></div>
 </div>
 <div class="circuit">
 <div class="ch"><div class="m w1"><span class="rounds">2 ROUNDS</span><span class="hint">glute finisher · minimal rest</span></div>
 <div class="m w2"><span class="rounds">2 ROUNDS</span><span class="hint">glute finisher · minimal rest</span></div>
-<div class="m w3"><span class="rounds">2 ROUNDS</span><span class="hint">glute finisher · minimal rest</span></div>
-<div class="m w4"><span class="rounds">2 ROUNDS</span><span class="hint">glute finisher · minimal rest</span></div></div>
+
+</div>
 <div class="ex"><div class="slot"><span class="code">1</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body"><div class="nm">Banded glute bridge ×15 · seated abduction ×20 · lateral walk ×10/way</div><div class="note">constant band tension</div>
 <div class="m w1"><span class="chip kbw">band</span></div><div class="m w2"><span class="chip kbw">band</span></div>
-<div class="m w3"><span class="chip kbw">band</span></div><div class="m w4"><span class="chip kbw">band</span></div>
+
 </div></div>
 </div>
 </div>
 <div class="dfoot"><b>Chaotic week?</b> Days A and B are the program — this day is the first to drop.</div>
 </article>
 </div>
-<div class="foot-row"><button class="reset-week" type="button">Reset week</button><button class="timer-open" type="button">Timer</button></div></section>
-<!-- ================= BLOCK 2 ================= -->
+<div class="days wk-late">
+<article class="day">
+<div class="dhead">
+<span class="dn">Day A<span>Squat, Press &amp; Pull</span>
+</span>
+</div>
+<div class="dbody">
+<div class="pair solo">
+<div class="ph">
+<span class="tag tg-solo">Solo</span>
+<span class="hint">rest 90–120s</span>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">1</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Goblet squat</div>
+<div class="note">controlled depth, chest tall; finish with about 3 reps available</div>
+
+<div class="m w3">
+<span class="sr">3 × 8</span>
+<span class="chip k16">16kg</span>
+<span class="bump">▲ new bell</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 8</span>
+<span class="chip k16">16kg</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pair">
+<div class="ph">
+<span class="tag">Superset</span>
+<span class="hint">alternate 2A ↔ 2B · rest 45–60s after each move</span>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">2A</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Single-arm strict press</div>
+<div class="note">ribs down, no back lean · per side · use clean strict repetitions</div>
+
+<div class="m w3">
+<span class="sr">3 × 4</span>
+<span class="chip k12">12kg</span>
+<span class="bump">▲ new bell</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 8</span>
+<span class="chip k8">8kg</span>
+</div>
+</div>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">2B</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Single-arm row</div>
+<div class="note">support the free hand, keep the back flat, elbow toward hip · per side</div>
+
+<div class="m w3">
+<span class="sr">3 × 8</span>
+<span class="chip k16">16kg</span>
+<span class="bump">▲ new bell</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 10</span>
+<span class="chip k12">12kg</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pair">
+<div class="ph">
+<span class="tag">Superset</span>
+<span class="hint">alternate 3A ↔ 3B · rest about 45s</span>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">3A</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Calf raise</div>
+<div class="note">full range, pause at the top</div>
+
+<div class="m w3">
+<span class="sr">2 × 12</span>
+<span class="chip k8">8kg</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 12</span>
+<span class="chip kbw">BW</span>
+</div>
+</div>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">3B</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Dead bug</div>
+<div class="note">lower back gently pressed flat · per side</div>
+
+<div class="m w3">
+<span class="sr">2 × 10</span>
+<span class="chip kbw">BW</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 6</span>
+<span class="chip kbw">BW</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pair solo">
+<div class="ph">
+<span class="tag tg-fin">Finish</span>
+<span class="hint">rest 60–90s</span>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">4</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Farmer carry</div>
+<div class="note">tall and braced, no swing; put the bells down while grip and posture are still good</div>
+
+<div class="m w3">
+<span class="sr">2 × 40s</span>
+<span class="chip k16">2 × 16kg</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 30s</span>
+<span class="chip k16">2 × 16kg</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="dfoot">
+<b>Press feeling heavy?</b> Shorten the set or add rest rather than forcing repetitions. The goal is repeatable strength.</div>
+</article>
+<article class="day">
+<div class="dhead">
+<span class="dn">Day B<span>Hinge, Lunge &amp; Chest</span>
+</span>
+</div>
+<div class="dbody">
+<div class="pair solo">
+<div class="ph">
+<span class="tag tg-solo">Solo</span>
+<span class="hint">full recovery · 60–90s</span>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">1</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Two-hand swing</div>
+<div class="note">crisp hip snap; stop immediately if speed or hinge shape deteriorates</div>
+
+<div class="m w3">
+<span class="sr">4 × 8</span>
+<span class="chip k16">16kg</span>
+<span class="bump">▲ new bell</span>
+</div>
+<div class="m w4">
+<span class="sr">3 × 10</span>
+<span class="chip k12">12kg</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pair solo">
+<div class="ph">
+<span class="tag tg-solo">Solo</span>
+<span class="hint">rest 90–120s</span>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">2</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">KB deadlift</div>
+<div class="note">hips back, flat back, stand tall</div>
+
+<div class="m w3">
+<span class="sr">3 × 8</span>
+<span class="chip k24">24kg</span>
+<span class="bump">▲ new bell</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 8</span>
+<span class="chip k20">20kg</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pair">
+<div class="ph">
+<span class="tag">Superset</span>
+<span class="hint">alternate 3A ↔ 3B · rest 45–60s after each move</span>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">3A</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Reverse lunge</div>
+<div class="note">torso tall, control the step back · per side · use support if balance limits the legs</div>
+
+<div class="m w3">
+<span class="sr">2 × 6</span>
+<span class="chip k16">16kg goblet</span>
+<span class="bump">▲ add load</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 6</span>
+<span class="chip k12">12kg goblet</span>
+</div>
+</div>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">3B</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Single-arm floor press</div>
+<div class="note">elbow about 45°, control the descent · per side</div>
+<div class="wknote w3">Only add the final reps if Week 2 finished with 2–3 good repetitions still available.</div>
+<div class="wknote w4">Use a 3-second lowering phase.</div>
+
+<div class="m w3">
+<span class="sr">3 × 12</span>
+<span class="chip k12">12kg</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 8</span>
+<span class="chip k12">12kg</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pair">
+<div class="ph">
+<span class="tag">Superset</span>
+<span class="hint">alternate 4A ↔ 4B · rest about 45s</span>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">4A</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Band pulldown</div>
+<div class="note">pull elbows toward the ribs and control the return</div>
+
+<div class="m w3">
+<span class="sr">2 × 10</span>
+<span class="chip kbw">heavier band</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 10</span>
+<span class="chip kbw">easy band</span>
+</div>
+</div>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">4B</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Side plank</div>
+<div class="note">hips stacked · use bent knees until a full plank is controlled · per side</div>
+
+<div class="m w3">
+<span class="sr">2 × 20s</span>
+<span class="chip kbw">BW</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 15s</span>
+<span class="chip kbw">knees or BW</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="dfoot">
+<b>Swing check:</b> this is a hinge, not a squat. Stop the set the moment speed or technique changes.</div>
+</article>
+<article class="day">
+<div class="dhead">
+<span class="dn">Day C<span>Glutes, Thighs &amp; Stability</span>
+</span>
+</div>
+<div class="dbody">
+<div class="pair solo">
+<div class="ph">
+<span class="tag tg-solo">Solo</span>
+<span class="hint">rest 75–90s</span>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">1</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Weighted glute bridge</div>
+<div class="note">ribs down, feet planted, pause and squeeze at the top</div>
+
+<div class="m w3">
+<span class="sr">3 × 10</span>
+<span class="chip k24">24kg</span>
+<span class="bump">▲ new bell</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 10</span>
+<span class="chip k20">20kg</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pair">
+<div class="ph">
+<span class="tag">Superset</span>
+<span class="hint">alternate 2A ↔ 2B · rest 45–60s after each move</span>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">2A</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Low step-up</div>
+<div class="note">whole foot on a low stable step; stand through the working leg · per side</div>
+
+<div class="m w3">
+<span class="sr">2 × 6</span>
+<span class="chip k16">16kg goblet</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 6</span>
+<span class="chip k12">12kg goblet</span>
+</div>
+</div>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">2B</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Incline push-up</div>
+<div class="note">hands on a stable bench or counter, body in one line; choose a height that leaves 2–3 reps available</div>
+
+<div class="m w3">
+<span class="sr">3 × 10</span>
+<span class="chip kbw">BW</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 8</span>
+<span class="chip kbw">BW</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pair">
+<div class="ph">
+<span class="tag">Superset</span>
+<span class="hint">alternate 3A ↔ 3B · rest 45–60s after each move</span>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">3A</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Romanian deadlift to kickstand RDL</div>
+<div class="note">Weeks 1–2 use a bilateral stance; from Week 3 use rear toes as a kickstand and load the front leg · per side</div>
+
+<div class="m w3">
+<span class="sr">2 × 8</span>
+<span class="chip k16">16kg kickstand</span>
+<span class="bump">▲ unilateral</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 8</span>
+<span class="chip k12">12kg kickstand</span>
+</div>
+</div>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">3B</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Band row</div>
+<div class="note">pull elbows back, pause briefly and control the return</div>
+
+<div class="m w3">
+<span class="sr">2 × 10</span>
+<span class="chip kbw">heavier band</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 10</span>
+<span class="chip kbw">easy band</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pair solo">
+<div class="ph">
+<span class="tag tg-fin">Finish</span>
+<span class="hint">rest 45–60s</span>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">4</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Suitcase carry</div>
+<div class="note">one bell at the side; stay tall without leaning · per side</div>
+
+<div class="m w3">
+<span class="sr">2 × 30s</span>
+<span class="chip k16">16kg</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 20s</span>
+<span class="chip k16">16kg</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="dfoot">
+<b>Glute focus:</b> make the bridge, step-up and kickstand RDL controlled and deliberate. Muscle tension matters more than rushing.</div>
+</article>
+</div>
+<div class="foot-row">
+<button class="reset-week" type="button">Reset week</button>
+<button class="timer-open" type="button">Timer</button>
+</div>
+</section>
+<!-- ================= B2 ================= -->
 <section class="block wk1" id="b2">
 <div aria-label="Week" class="wtabs" role="tablist">
 <button class="wtab on" data-w="1">Week 5</button>
 <button class="wtab" data-w="2">Week 6</button>
 <button class="wtab" data-w="3">Week 7</button>
 <button class="wtab" data-w="4">Week 8</button>
-</div><p class="bdesc">Double-bell work begins and loads climb properly.</p>
-<div class="warm">
-<span class="t">Warm-up · every session</span>
-<span class="i">2 min easy movement</span><span class="sep">·</span>
-<span class="i">cat-cow ×8</span><span class="sep">·</span>
-<span class="i">band lateral walk ×10/side</span><span class="sep">·</span>
-<span class="i">band pull-apart ×10</span><span class="sep">·</span>
-<span class="i">goblet squat <span class="chip k12">12kg</span> ×5</span><span class="sep">·</span>
-<span class="i">swings <span class="chip k12">12kg</span> ×8</span>
 </div>
+<p class="bdesc">Build repeatable strength across all three sessions while adding lower-body volume gradually and keeping recovery ahead of load.</p>
+<div class="consol">
+<b>Week 8 · Consolidate</b>
+<span class="ct">Two working sets on most lifts, familiar loads, no new kettlebells and lower total volume. The purpose is to absorb the last three weeks, not to test progress.</span>
+</div>
+<div class="warm">
+<span class="t">Warm-up</span>
+<span class="i">2 min easy movement</span>
+<span class="sep">·</span>
+<span class="i">cat-cow ×6</span>
+<span class="sep">·</span>
+<span class="i">bodyweight squat ×8</span>
+<span class="sep">·</span>
+<span class="i">glute bridge ×8</span>
+<span class="sep">·</span>
+<span class="i">band pull-apart ×10</span>
+<span class="sep">·</span>
+<span class="i">unloaded hip hinge ×8</span>
+</div>
+<div class="warmnote">About 5–7 minutes. Before the first primary lift, complete one or two easy ramp-up sets with a lighter kettlebell.</div>
 <div class="days">
 <article class="day">
-<div class="dhead"><span class="dn">Day A<span>Squat &amp; Press</span></span></div>
+<div class="dhead">
+<span class="dn">Day A<span>Squat, Press &amp; Pull</span>
+</span>
+</div>
 <div class="dbody">
-<div class="pair solo"><div class="ph"><span class="tag tg-solo">Solo</span><span class="hint">rest 90–120s</span></div><div class="ex"><div class="slot"><span class="code">1</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
-<div class="nm">Double KB front squat</div><div class="note">elbows up, sit deep</div><div class="wknote w1">swap the mixed pair between sides each set</div>
-<div class="m w1"><span class="sr">4 × 5</span><span class="chip k12">12</span><span class="arr">+</span><span class="chip k16">16kg</span></div>
-<div class="m w2"><span class="sr">4 × 6</span><span class="chip k12">12</span><span class="arr">+</span><span class="chip k16">16kg</span></div>
-<div class="m w3"><span class="sr">4 × 8</span><span class="chip k12">12</span><span class="arr">+</span><span class="chip k16">16kg</span></div>
-<div class="m w4"><span class="sr">4 × 5</span><span class="chip k16">2 × 16kg</span><span class="bump">▲ matched pair</span></div>
-</div></div></div>
-<div class="pair solo"><div class="ph"><span class="tag tg-solo">Solo</span><span class="hint">rest 90s</span></div><div class="ex"><div class="slot"><span class="code">2</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
-<div class="nm">Single-arm press</div><div class="note">brace; small leg drive OK · per side</div>
-<div class="m w1"><span class="sr">4 × 6</span><span class="chip k8">8kg</span></div>
-<div class="m w2"><span class="sr">4 × 8</span><span class="chip k8">8kg</span></div>
-<div class="m w3"><span class="sr">4 × 5</span><span class="chip k12">12kg</span><span class="bump">▲ new bell</span></div>
-<div class="m w4"><span class="sr">4 × 6</span><span class="chip k12">12kg</span></div>
-</div></div></div>
+<div class="pair solo">
+<div class="ph">
+<span class="tag tg-solo">Solo</span>
+<span class="hint">rest 90–120s</span>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">1</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Goblet squat</div>
+<div class="note">controlled depth, chest tall; finish with about 3 reps available</div>
+<div class="m w1">
+<span class="sr">3 × 10</span>
+<span class="chip k16">16kg</span>
+</div>
+<div class="m w2">
+<span class="sr">3 × 12</span>
+<span class="chip k16">16kg</span>
+</div>
+<div class="m w3">
+<span class="sr">3 × 8</span>
+<span class="chip k20">20kg</span>
+<span class="bump">▲ new bell</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 10</span>
+<span class="chip k16">16kg</span>
+</div>
+</div>
+</div>
+</div>
 <div class="pair">
-<div class="ph"><span class="tag">Superset</span><span class="hint">alternate 3A ↔ 3B · rest 45–60s</span></div>
-<div class="ex"><div class="slot"><span class="code">3A</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
-<div class="nm">Romanian deadlift</div><div class="note">hips back, flat back</div>
-<div class="m w1"><span class="sr">3 × 8</span><span class="chip k20">20kg</span></div>
-<div class="m w2"><span class="sr">3 × 10</span><span class="chip k20">20kg</span></div>
-<div class="m w3"><span class="sr">3 × 8</span><span class="chip k24">24kg</span><span class="bump">▲ new bell</span></div>
-<div class="m w4"><span class="sr">3 × 10</span><span class="chip k24">24kg</span></div>
-</div></div>
-<div class="ex"><div class="slot"><span class="code">3B</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
-<div class="nm">Single-arm row</div><div class="note">flat back, elbow to hip · per side</div>
-<div class="m w1"><span class="sr">3 × 8</span><span class="chip k16">16kg</span></div>
-<div class="m w2"><span class="sr">3 × 10</span><span class="chip k16">16kg</span></div>
-<div class="m w3"><span class="sr">3 × 8</span><span class="chip k20">20kg</span><span class="bump">▲ new bell</span></div>
-<div class="m w4"><span class="sr">3 × 10</span><span class="chip k20">20kg</span></div>
-</div></div>
+<div class="ph">
+<span class="tag">Superset</span>
+<span class="hint">alternate 2A ↔ 2B · rest 45–60s after each move</span>
 </div>
-<div class="pair solo"><div class="ph"><span class="tag tg-solo">Solo</span><span class="hint">rest 60–90s</span></div><div class="ex"><div class="slot"><span class="code">4</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
-<div class="nm">Hip thrust</div><div class="note">full extension, squeeze</div>
-<div class="m w1"><span class="sr">3 × 10</span><span class="chip k24">24kg</span></div>
-<div class="m w2"><span class="sr">3 × 12</span><span class="chip k24">24kg</span></div>
-<div class="m w3"><span class="sr">3 × 10</span><span class="chip k24">24kg</span><span class="chip kbw">+ band</span><span class="bump">▲ add band</span></div>
-<div class="m w4"><span class="sr">3 × 12</span><span class="chip k24">24kg</span><span class="chip kbw">+ band</span></div>
-</div></div></div>
-<div class="pair solo"><div class="ph"><span class="tag tg-fin">Finish</span><span class="hint">rest as needed</span></div><div class="ex"><div class="slot"><span class="code">5</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
-<div class="nm">Farmer carry</div><div class="note">tall &amp; braced, no swing</div>
-<div class="m w1"><span class="sr">3 × 40s</span><span class="chip k20">2 × 20kg</span></div>
-<div class="m w2"><span class="sr">3 × 50s</span><span class="chip k20">2 × 20kg</span><span class="bump">▲ time</span></div>
-<div class="m w3"><span class="sr">3 × 50s</span><span class="chip k20">2 × 20kg</span></div>
-<div class="m w4"><span class="sr">3 × 50s</span><span class="chip k20">2 × 20kg</span></div>
-</div></div></div>
+<div class="ex">
+<div class="slot">
+<span class="code">2A</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
 </div>
-<div class="dfoot"><b>New this block:</b> the double rack position. Spend a session just holding and breathing in it if it feels foreign.</div>
+<div class="body">
+<div class="nm">Single-arm strict press</div>
+<div class="note">ribs down, no back lean · per side · use clean strict repetitions</div>
+<div class="m w1">
+<span class="sr">3 × 5</span>
+<span class="chip k12">12kg</span>
+</div>
+<div class="m w2">
+<span class="sr">3 × 6</span>
+<span class="chip k12">12kg</span>
+</div>
+<div class="m w3">
+<span class="sr">3 × 7</span>
+<span class="chip k12">12kg</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 10</span>
+<span class="chip k8">8kg</span>
+</div>
+</div>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">2B</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Single-arm row</div>
+<div class="note">support the free hand, keep the back flat, elbow toward hip · per side</div>
+<div class="m w1">
+<span class="sr">3 × 10</span>
+<span class="chip k16">16kg</span>
+</div>
+<div class="m w2">
+<span class="sr">3 × 12</span>
+<span class="chip k16">16kg</span>
+</div>
+<div class="m w3">
+<span class="sr">3 × 8</span>
+<span class="chip k20">20kg</span>
+<span class="bump">▲ new bell</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 10</span>
+<span class="chip k16">16kg</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pair">
+<div class="ph">
+<span class="tag">Superset</span>
+<span class="hint">alternate 3A ↔ 3B · rest about 45s</span>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">3A</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Calf raise</div>
+<div class="note">full range, pause at the top</div>
+<div class="m w1">
+<span class="sr">2 × 12</span>
+<span class="chip k8">8kg</span>
+</div>
+<div class="m w2">
+<span class="sr">2 × 15</span>
+<span class="chip k8">8kg</span>
+</div>
+<div class="m w3">
+<span class="sr">2 × 10</span>
+<span class="chip kbw">single-leg BW</span>
+<span class="bump">▲ single leg</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 12</span>
+<span class="chip kbw">BW</span>
+</div>
+</div>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">3B</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Dead bug</div>
+<div class="note">lower back gently pressed flat · per side</div>
+<div class="m w1">
+<span class="sr">2 × 8</span>
+<span class="chip kbw">BW</span>
+</div>
+<div class="m w2">
+<span class="sr">2 × 10</span>
+<span class="chip kbw">BW</span>
+</div>
+<div class="m w3">
+<span class="sr">2 × 12</span>
+<span class="chip kbw">BW</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 8</span>
+<span class="chip kbw">BW</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pair solo">
+<div class="ph">
+<span class="tag tg-fin">Finish</span>
+<span class="hint">rest 60–90s</span>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">4</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Farmer carry</div>
+<div class="note">tall and braced, no swing; put the bells down while grip and posture are still good</div>
+<div class="m w1">
+<span class="sr">2 × 40s</span>
+<span class="chip k16">2 × 16kg</span>
+</div>
+<div class="m w2">
+<span class="sr">2 × 30s</span>
+<span class="chip k20">2 × 20kg</span>
+<span class="bump">▲ new bells</span>
+</div>
+<div class="m w3">
+<span class="sr">2 × 40s</span>
+<span class="chip k20">2 × 20kg</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 30s</span>
+<span class="chip k16">2 × 16kg</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="dfoot">
+<b>Press feeling heavy?</b> Drop a repetition or add rest rather than leaning back. Do not turn the press into a backbend.</div>
 </article>
 <article class="day">
-<div class="dhead"><span class="dn">Day B<span>Hinge &amp; Glutes</span></span></div>
+<div class="dhead">
+<span class="dn">Day B<span>Hinge, Lunge &amp; Chest</span>
+</span>
+</div>
 <div class="dbody">
-<div class="pair solo"><div class="ph"><span class="tag tg-solo">Solo</span><span class="hint">rest 90–120s</span></div><div class="ex"><div class="slot"><span class="code">1</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
-<div class="nm">Double KB deadlift</div><div class="note">flat back, bells close</div>
-<div class="m w1"><span class="sr">4 × 6</span><span class="chip k16">2 × 16kg</span></div>
-<div class="m w2"><span class="sr">4 × 8</span><span class="chip k16">2 × 16kg</span></div>
-<div class="m w3"><span class="sr">4 × 6</span><span class="chip k20">2 × 20kg</span><span class="bump">▲ new bells</span></div>
-<div class="m w4"><span class="sr">4 × 8</span><span class="chip k20">2 × 20kg</span></div>
-</div></div></div>
-<div class="pair solo"><div class="ph"><span class="tag tg-pow">Power</span><span class="hint">full rest between sets</span></div><div class="ex"><div class="slot"><span class="code">2</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
-<div class="nm">Two-hand swing</div><div class="note">hip snap, not a squat</div>
-<div class="m w1"><span class="sr">5 × 10</span><span class="chip k16">16kg</span></div>
-<div class="m w2"><span class="sr">4 × 10</span><span class="chip k20">20kg</span><span class="bump">▲ new bell</span></div>
-<div class="m w3"><span class="sr">5 × 10</span><span class="chip k20">20kg</span><span class="bump">▲ extra set</span></div>
-<div class="m w4"><span class="sr">6 × 10</span><span class="chip k20">20kg</span><span class="bump">▲ extra set</span></div>
-</div></div></div>
-<div class="pair">
-<div class="ph"><span class="tag">Superset</span><span class="hint">alternate 3A ↔ 3B · rest 45–60s</span></div>
-<div class="ex"><div class="slot"><span class="code">3A</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
-<div class="nm">Split squat or step-up</div><div class="note">drop straight down · per side</div>
-<div class="m w1"><span class="sr">3 × 8</span><span class="chip k8">8kg</span></div>
-<div class="m w2"><span class="sr">3 × 10</span><span class="chip k8">8kg</span></div>
-<div class="m w3"><span class="sr">3 × 8</span><span class="chip k12">12kg</span><span class="bump">▲ new bell</span></div>
-<div class="m w4"><span class="sr">3 × 10</span><span class="chip k12">12kg</span></div>
-</div></div>
-<div class="ex"><div class="slot"><span class="code">3B</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
-<div class="nm">Floor press</div><div class="note">elbows ~45°, control down · per side</div>
-<div class="m w1"><span class="sr">3 × 6</span><span class="chip k16">16kg</span><span class="bump">▲ new bell</span></div>
-<div class="m w2"><span class="sr">3 × 8</span><span class="chip k16">16kg</span></div>
-<div class="m w3"><span class="sr">3 × 9</span><span class="chip k16">16kg</span></div>
-<div class="m w4"><span class="sr">3 × 10</span><span class="chip k16">16kg</span></div>
-</div></div>
+<div class="pair solo">
+<div class="ph">
+<span class="tag tg-solo">Solo</span>
+<span class="hint">full recovery · 60–90s</span>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">1</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Two-hand swing</div>
+<div class="note">crisp hip snap; stop immediately if speed or hinge shape deteriorates</div>
+<div class="m w1">
+<span class="sr">4 × 10</span>
+<span class="chip k16">16kg</span>
+</div>
+<div class="m w2">
+<span class="sr">4 × 8</span>
+<span class="chip k20">20kg</span>
+<span class="bump">▲ new bell</span>
+</div>
+<div class="m w3">
+<span class="sr">4 × 10</span>
+<span class="chip k20">20kg</span>
+</div>
+<div class="m w4">
+<span class="sr">3 × 8</span>
+<span class="chip k16">16kg</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pair solo">
+<div class="ph">
+<span class="tag tg-solo">Solo</span>
+<span class="hint">rest 90–120s</span>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">2</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Double-KB deadlift</div>
+<div class="note">bells outside the feet, hips back, flat back</div>
+<div class="m w1">
+<span class="sr">3 × 6</span>
+<span class="chip k16">2 × 16kg</span>
+</div>
+<div class="m w2">
+<span class="sr">3 × 8</span>
+<span class="chip k16">2 × 16kg</span>
+</div>
+<div class="m w3">
+<span class="sr">3 × 10</span>
+<span class="chip k16">2 × 16kg</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 6</span>
+<span class="chip k16">2 × 16kg</span>
+</div>
+</div>
+</div>
 </div>
 <div class="pair">
-<div class="ph"><span class="tag">Superset</span><span class="hint">alternate 4A ↔ 4B · rest 45–60s</span></div>
-<div class="ex"><div class="slot"><span class="code">4A</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
-<div class="nm">Single-leg glute bridge</div><div class="note">hips level, squeeze top · per side</div>
-<div class="m w1"><span class="sr">3 × 8</span><span class="chip kbw">BW</span></div>
-<div class="m w2"><span class="sr">3 × 10</span><span class="chip kbw">BW</span></div>
-<div class="m w3"><span class="sr">3 × 8</span><span class="chip k8">+8kg on hips</span><span class="bump">▲ add load</span></div>
-<div class="m w4"><span class="sr">3 × 10</span><span class="chip k8">+8kg on hips</span></div>
-</div></div>
-<div class="ex"><div class="slot"><span class="code">4B</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
-<div class="nm">Side plank</div><div class="note">straight line, don't sag · per side</div>
-<div class="m w1"><span class="sr">3 × 20s</span><span class="chip kbw">BW</span></div>
-<div class="m w2"><span class="sr">3 × 25s</span><span class="chip kbw">BW</span></div>
-<div class="m w3"><span class="sr">3 × 30s</span><span class="chip kbw">BW</span></div>
-<div class="m w4"><span class="sr">3 × 30s</span><span class="chip kbw">BW</span></div>
-</div></div>
+<div class="ph">
+<span class="tag">Superset</span>
+<span class="hint">alternate 3A ↔ 3B · rest 45–60s after each move</span>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">3A</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Reverse lunge</div>
+<div class="note">torso tall, control the step back · per side</div>
+<div class="m w1">
+<span class="sr">3 × 6</span>
+<span class="chip k16">16kg goblet</span>
+</div>
+<div class="m w2">
+<span class="sr">3 × 8</span>
+<span class="chip k16">16kg goblet</span>
+</div>
+<div class="m w3">
+<span class="sr">3 × 10</span>
+<span class="chip k16">16kg goblet</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 6</span>
+<span class="chip k16">16kg goblet</span>
 </div>
 </div>
-<div class="dfoot"><b>Glute truth:</b> these heavy hinges are what build the shape — the band work is the garnish.</div>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">3B</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Single-arm floor press</div>
+<div class="note">elbow about 45°, control the descent · per side</div>
+<div class="wknote w1">Pause for one second at the bottom.</div>
+<div class="wknote w3">Use 16kg only if 12kg × 12 was technically clean with 2–3 reps available. Otherwise continue with 12kg.</div>
+<div class="wknote w4">Use a 3-second lowering phase.</div>
+<div class="m w1">
+<span class="sr">3 × 10</span>
+<span class="chip k12">12kg</span>
+</div>
+<div class="m w2">
+<span class="sr">3 × 12</span>
+<span class="chip k12">12kg</span>
+</div>
+<div class="m w3">
+<span class="sr">3 × 4</span>
+<span class="chip k16">16kg</span>
+<span class="wn">if ready</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 10</span>
+<span class="chip k12">12kg</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pair">
+<div class="ph">
+<span class="tag">Superset</span>
+<span class="hint">alternate 4A ↔ 4B · rest about 45s</span>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">4A</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Band pulldown</div>
+<div class="note">pull elbows toward the ribs and control the return</div>
+<div class="m w1">
+<span class="sr">2 × 10</span>
+<span class="chip kbw">band</span>
+</div>
+<div class="m w2">
+<span class="sr">2 × 12</span>
+<span class="chip kbw">band</span>
+</div>
+<div class="m w3">
+<span class="sr">2 × 10</span>
+<span class="chip kbw">heavier band</span>
+<span class="bump">▲ band up</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 10</span>
+<span class="chip kbw">easy band</span>
+</div>
+</div>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">4B</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Side plank</div>
+<div class="note">straight line, hips stacked · per side</div>
+<div class="m w1">
+<span class="sr">2 × 15s</span>
+<span class="chip kbw">BW</span>
+</div>
+<div class="m w2">
+<span class="sr">2 × 20s</span>
+<span class="chip kbw">BW</span>
+</div>
+<div class="m w3">
+<span class="sr">2 × 25s</span>
+<span class="chip kbw">BW</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 15s</span>
+<span class="chip kbw">BW</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="dfoot">
+<b>Swing check:</b> crisp repetitions only. These are power practice, not a fatigue test.</div>
 </article>
 <article class="day">
-<div class="dhead"><span class="dn">Day C<span>Density · EMOM</span></span></div>
+<div class="dhead">
+<span class="dn">Day C<span>Glutes, Thighs &amp; Stability</span>
+</span>
+</div>
 <div class="dbody">
-<div class="circuit">
-<div class="ch">
-<div class="m w1"><span class="rounds">EMOM 16 MIN</span><span class="hint">each minute: do the work, rest till the next minute · 4 rounds</span></div>
-<div class="m w2"><span class="rounds">EMOM 20 MIN</span><span class="hint">5 rounds</span><span class="bump">▲ extra round</span></div>
-<div class="m w3"><span class="rounds">EMOM 20 MIN</span><span class="hint">5 rounds</span></div>
-<div class="m w4"><span class="rounds">EMOM 20 MIN</span><span class="hint">5 rounds</span></div>
+<div class="pair solo">
+<div class="ph">
+<span class="tag tg-solo">Solo</span>
+<span class="hint">rest 75–90s</span>
 </div>
-<div class="ex"><div class="slot"><span class="code">M1</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body"><div class="nm">Two-hand swing</div><div class="note">hip snap, not a squat</div>
-<div class="m w1"><span class="sr">×12</span><span class="chip k16">16kg</span></div>
-<div class="m w2"><span class="sr">×12</span><span class="chip k16">16kg</span></div>
-<div class="m w3"><span class="sr">×12</span><span class="chip k20">20kg</span><span class="bump">▲ new bell</span></div>
-<div class="m w4"><span class="sr">×12</span><span class="chip k20">20kg</span></div>
-</div></div>
-<div class="ex"><div class="slot"><span class="code">M2</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body"><div class="nm">Goblet squat</div><div class="note">sit deep, chest tall</div>
-<div class="m w1"><span class="sr">×8</span><span class="chip k16">16kg</span></div>
-<div class="m w2"><span class="sr">×8</span><span class="chip k16">16kg</span></div>
-<div class="m w3"><span class="sr">×8</span><span class="chip k16">16kg</span></div>
-<div class="m w4"><span class="sr">×8</span><span class="chip k16">16kg</span></div>
-</div></div>
-<div class="ex"><div class="slot"><span class="code">M3</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body"><div class="nm">Push-up</div><div class="note">straight line, full lockout</div>
-<div class="m w1"><span class="sr">×6</span><span class="chip kbw">BW</span></div>
-<div class="m w2"><span class="sr">×8</span><span class="chip kbw">BW</span></div>
-<div class="m w3"><span class="sr">×8</span><span class="chip kbw">BW</span></div>
-<div class="m w4"><span class="sr">×10</span><span class="chip kbw">BW</span></div>
-</div></div>
-<div class="ex"><div class="slot"><span class="code">M4</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body"><div class="nm">Single-arm row</div><div class="note">flat back, elbow to hip · per side</div>
-<div class="m w1"><span class="sr">×8</span><span class="chip k16">16kg</span></div>
-<div class="m w2"><span class="sr">×8</span><span class="chip k16">16kg</span></div>
-<div class="m w3"><span class="sr">×8</span><span class="chip k16">16kg</span></div>
-<div class="m w4"><span class="sr">×8</span><span class="chip k16">16kg</span></div>
-</div></div>
+<div class="ex">
+<div class="slot">
+<span class="code">1</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
 </div>
-<div class="circuit">
-<div class="ch"><div class="m w1"><span class="rounds">FINISH</span><span class="hint">glute finisher ×2 rounds, then one carry</span></div>
-<div class="m w2"><span class="rounds">FINISH</span><span class="hint">glute finisher ×2 rounds, then one carry</span></div>
-<div class="m w3"><span class="rounds">FINISH</span><span class="hint">glute finisher ×2 rounds, then one carry</span></div>
-<div class="m w4"><span class="rounds">FINISH</span><span class="hint">glute finisher ×2 rounds, then one carry</span></div></div>
-<div class="ex"><div class="slot"><span class="code">1</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body"><div class="nm">Banded glute bridge ×15 · seated abduction ×20 · lateral walk ×10/way</div><div class="note">constant band tension</div>
-<div class="m w1"><span class="chip kbw">band</span></div><div class="m w2"><span class="chip kbw">band</span></div>
-<div class="m w3"><span class="chip kbw">band</span></div><div class="m w4"><span class="chip kbw">band</span></div>
-</div></div>
-<div class="ex"><div class="slot"><span class="code">2</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body"><div class="nm">Farmer carry</div><div class="note">tall &amp; braced, no swing</div>
-<div class="m w1"><span class="sr">1 × 50s</span><span class="chip k20">2 × 20kg</span></div>
-<div class="m w2"><span class="sr">1 × 50s</span><span class="chip k20">2 × 20kg</span></div>
-<div class="m w3"><span class="sr">1 × 50s</span><span class="chip k20">2 × 20kg</span></div>
-<div class="m w4"><span class="sr">1 × 50s</span><span class="chip k20">2 × 20kg</span></div>
-</div></div>
+<div class="body">
+<div class="nm">Hip thrust</div>
+<div class="note">upper back supported, ribs down, chin tucked; pause at full hip extension</div>
+<div class="m w1">
+<span class="sr">3 × 10</span>
+<span class="chip k24">24kg</span>
+<span class="chip kbw">+ band</span>
+</div>
+<div class="m w2">
+<span class="sr">3 × 12</span>
+<span class="chip k24">24kg</span>
+<span class="chip kbw">+ band</span>
+</div>
+<div class="m w3">
+<span class="sr">3 × 8</span>
+<span class="chip k16">2 × 16kg</span>
+<span class="bump">▲ add load</span>
+<span class="wn">if setup is secure</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 10</span>
+<span class="chip k24">24kg</span>
 </div>
 </div>
-<div class="dfoot"><b>Pace check:</b> if a minute’s work takes more than ~35s, drop the reps, not the form.</div>
+</div>
+</div>
+<div class="pair">
+<div class="ph">
+<span class="tag">Superset</span>
+<span class="hint">alternate 2A ↔ 2B · rest 45–60s after each move</span>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">2A</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Step-up</div>
+<div class="note">use a moderate stable step; drive through the working leg without pushing off the floor · per side</div>
+<div class="m w1">
+<span class="sr">3 × 6</span>
+<span class="chip k16">16kg goblet</span>
+</div>
+<div class="m w2">
+<span class="sr">3 × 8</span>
+<span class="chip k16">16kg goblet</span>
+</div>
+<div class="m w3">
+<span class="sr">3 × 10</span>
+<span class="chip k16">16kg goblet</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 6</span>
+<span class="chip k16">16kg goblet</span>
+</div>
+</div>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">2B</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Incline push-up</div>
+<div class="note">body in one line; lower the hand support only when all repetitions remain controlled</div>
+<div class="m w1">
+<span class="sr">3 × 8</span>
+<span class="chip kbw">BW</span>
+</div>
+<div class="m w2">
+<span class="sr">3 × 10</span>
+<span class="chip kbw">BW</span>
+</div>
+<div class="m w3">
+<span class="sr">3 × 8</span>
+<span class="chip kbw">lower surface</span>
+<span class="bump">▲ harder angle</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 8</span>
+<span class="chip kbw">familiar height</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pair">
+<div class="ph">
+<span class="tag">Superset</span>
+<span class="hint">alternate 3A ↔ 3B · rest 45–60s after each move</span>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">3A</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Kickstand Romanian deadlift</div>
+<div class="note">rear toes act as a kickstand; most weight stays on the front leg · per side</div>
+<div class="m w1">
+<span class="sr">3 × 8</span>
+<span class="chip k16">16kg</span>
+</div>
+<div class="m w2">
+<span class="sr">3 × 10</span>
+<span class="chip k16">16kg</span>
+</div>
+<div class="m w3">
+<span class="sr">3 × 8</span>
+<span class="chip k20">20kg</span>
+<span class="bump">▲ new bell</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 8</span>
+<span class="chip k16">16kg</span>
+</div>
+</div>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">3B</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Band row</div>
+<div class="note">pull elbows back, pause briefly and control the return</div>
+<div class="m w1">
+<span class="sr">2 × 10</span>
+<span class="chip kbw">band</span>
+</div>
+<div class="m w2">
+<span class="sr">2 × 12</span>
+<span class="chip kbw">band</span>
+</div>
+<div class="m w3">
+<span class="sr">2 × 10</span>
+<span class="chip kbw">heavier band</span>
+<span class="bump">▲ band up</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 10</span>
+<span class="chip kbw">easy band</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pair solo">
+<div class="ph">
+<span class="tag tg-fin">Finish</span>
+<span class="hint">rest 45–60s</span>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">4</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Suitcase carry</div>
+<div class="note">one bell at the side; stay tall without leaning · per side</div>
+<div class="m w1">
+<span class="sr">2 × 30s</span>
+<span class="chip k20">20kg</span>
+</div>
+<div class="m w2">
+<span class="sr">2 × 35s</span>
+<span class="chip k20">20kg</span>
+</div>
+<div class="m w3">
+<span class="sr">2 × 40s</span>
+<span class="chip k20">20kg</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 30s</span>
+<span class="chip k16">16kg</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="dfoot">
+<b>Quality target:</b> the final repetitions should be challenging but still smooth. Add load only after balance and range are consistent.</div>
 </article>
 </div>
-<div class="foot-row"><button class="reset-week" type="button">Reset week</button><button class="timer-open" type="button">Timer</button></div></section>
-<!-- ================= BLOCK 3 ================= -->
+<div class="foot-row">
+<button class="reset-week" type="button">Reset week</button>
+<button class="timer-open" type="button">Timer</button>
+</div>
+</section>
+<!-- ================= B3 ================= -->
 <section class="block wk1" id="b3">
 <div aria-label="Week" class="wtabs" role="tablist">
 <button class="wtab on" data-w="1">Week 9</button>
 <button class="wtab" data-w="2">Week 10</button>
 <button class="wtab" data-w="3">Week 11</button>
 <button class="wtab" data-w="4">Week 12</button>
-</div><p class="bdesc">Heavy and explosive. Power is the key, and swings build it best.</p>
+</div>
+<p class="bdesc">Consolidate the foundation, strengthen the major patterns and give the thighs and glutes meaningful work without testing limits.</p>
+<div class="consol">
+<b>Week 12 · Consolidate</b>
+<span class="ct">Two working sets on most lifts, familiar loads, no new kettlebells and lower total volume. The purpose is to absorb the last three weeks, not to test progress.</span>
+</div>
 <div class="warm">
-<span class="t">Warm-up · every session</span>
-<span class="i">2 min easy movement</span><span class="sep">·</span>
-<span class="i">cat-cow ×8</span><span class="sep">·</span>
-<span class="i">band lateral walk ×10/side</span><span class="sep">·</span>
-<span class="i">band pull-apart ×10</span><span class="sep">·</span>
-<span class="i">goblet squat <span class="chip k16">16kg</span> ×5</span><span class="sep">·</span>
-<span class="i">swings <span class="chip k16">16kg</span> ×8</span>
-</div><div class="warmnote">Before the day’s first heavy lift, take one feel set of 5 with a lighter bell.</div>
+<span class="t">Warm-up</span>
+<span class="i">2 min easy movement</span>
+<span class="sep">·</span>
+<span class="i">cat-cow ×6</span>
+<span class="sep">·</span>
+<span class="i">bodyweight squat ×8</span>
+<span class="sep">·</span>
+<span class="i">glute bridge ×8</span>
+<span class="sep">·</span>
+<span class="i">band pull-apart ×10</span>
+<span class="sep">·</span>
+<span class="i">unloaded hip hinge ×8</span>
+</div>
+<div class="warmnote">About 5–7 minutes. Before the first primary lift, complete one or two easy ramp-up sets with a lighter kettlebell.</div>
 <div class="days">
 <article class="day">
-<div class="dhead"><span class="dn">Day A<span>Squat &amp; Press</span></span></div>
+<div class="dhead">
+<span class="dn">Day A<span>Squat, Press &amp; Pull</span>
+</span>
+</div>
 <div class="dbody">
-<div class="pair solo"><div class="ph"><span class="tag tg-solo">Solo</span><span class="hint">rest 2 min</span></div><div class="ex"><div class="slot"><span class="code">1</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
-<div class="nm">Double KB front squat</div><div class="note">elbows up, sit deep</div>
-<div class="m w1"><span class="sr">4 × 5</span><span class="chip k16">2 × 16kg</span></div>
-<div class="m w2"><span class="sr">4 × 6</span><span class="chip k16">2 × 16kg</span></div>
-<div class="m w3"><span class="sr">5 × 5</span><span class="chip k16">2 × 16kg</span><span class="bump">▲ extra set</span></div>
-<div class="m w4"><span class="sr">5 × 6</span><span class="chip k16">2 × 16kg</span></div>
-</div></div></div>
-<div class="pair solo"><div class="ph"><span class="tag tg-solo">Solo</span><span class="hint">rest 90s</span></div><div class="ex"><div class="slot"><span class="code">2</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
-<div class="nm">Single-arm press</div><div class="note">brace; small leg drive OK · per side</div>
-<div class="m w1"><span class="sr">4 × 5</span><span class="chip k12">12kg</span></div>
-<div class="m w2"><span class="sr">4 × 6</span><span class="chip k12">12kg</span></div>
-<div class="m w3"><span class="sr">5 × 5</span><span class="chip k12">12kg</span><span class="bump">▲ extra set</span></div>
-<div class="m w4"><span class="sr">5 × 6</span><span class="chip k12">12kg</span></div>
-</div></div></div>
+<div class="pair solo">
+<div class="ph">
+<span class="tag tg-solo">Solo</span>
+<span class="hint">rest 90–120s</span>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">1</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Goblet squat</div>
+<div class="note">controlled depth, chest tall; finish with about 3 reps available</div>
+<div class="m w1">
+<span class="sr">3 × 10</span>
+<span class="chip k20">20kg</span>
+</div>
+<div class="m w2">
+<span class="sr">3 × 12</span>
+<span class="chip k20">20kg</span>
+</div>
+<div class="m w3">
+<span class="sr">3 × 8</span>
+<span class="chip k24">24kg</span>
+<span class="bump">▲ new bell</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 8</span>
+<span class="chip k20">20kg</span>
+</div>
+</div>
+</div>
+</div>
 <div class="pair">
-<div class="ph"><span class="tag">Superset</span><span class="hint">alternate 3A ↔ 3B · rest 45–60s</span></div>
-<div class="ex"><div class="slot"><span class="code">3A</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
-<div class="nm">Double KB Romanian deadlift</div><div class="note">hips back, flat back</div><div class="wknote w4">3s lowering</div>
-<div class="m w1"><span class="sr">3 × 8</span><span class="chip k20">2 × 20kg</span></div>
-<div class="m w2"><span class="sr">3 × 10</span><span class="chip k20">2 × 20kg</span></div>
-<div class="m w3"><span class="sr">4 × 8</span><span class="chip k20">2 × 20kg</span><span class="bump">▲ extra set</span></div>
-<div class="m w4"><span class="sr">4 × 8</span><span class="chip k20">2 × 20kg</span></div>
-</div></div>
-<div class="ex"><div class="slot"><span class="code">3B</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
-<div class="nm">Single-arm row</div><div class="note">flat back, elbow to hip · per side</div>
-<div class="m w1"><span class="sr">3 × 8</span><span class="chip k20">20kg</span></div>
-<div class="m w2"><span class="sr">3 × 10</span><span class="chip k20">20kg</span></div>
-<div class="m w3"><span class="sr">4 × 8</span><span class="chip k20">20kg</span><span class="bump">▲ extra set</span></div>
-<div class="m w4"><span class="sr">4 × 10</span><span class="chip k20">20kg</span></div>
-</div></div>
+<div class="ph">
+<span class="tag">Superset</span>
+<span class="hint">alternate 2A ↔ 2B · rest 45–60s after each move</span>
 </div>
-<div class="pair solo"><div class="ph"><span class="tag tg-solo">Solo</span><span class="hint">rest 60–90s</span></div><div class="ex"><div class="slot"><span class="code">4</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
-<div class="nm">Hip thrust</div><div class="note">full extension, squeeze</div><div class="wknote w4">2s squeeze at top</div>
-<div class="m w1"><span class="sr">3 × 8</span><span class="chip k24">24kg</span><span class="chip kbw">+ band</span></div>
-<div class="m w2"><span class="sr">3 × 10</span><span class="chip k24">24kg</span><span class="chip kbw">+ band</span></div>
-<div class="m w3"><span class="sr">3 × 12</span><span class="chip k24">24kg</span><span class="chip kbw">+ band</span></div>
-<div class="m w4"><span class="sr">3 × 12</span><span class="chip k24">24kg</span><span class="chip kbw">+ band</span></div>
-</div></div></div>
-<div class="pair solo"><div class="ph"><span class="tag tg-fin">Finish</span><span class="hint">rest as needed</span></div><div class="ex"><div class="slot"><span class="code">5</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
-<div class="nm">Farmer carry</div><div class="note">tall &amp; braced, no swing</div>
-<div class="m w1"><span class="sr">3 × 25s</span><span class="chip k24">2 × 24kg</span></div>
-<div class="m w2"><span class="sr">3 × 30s</span><span class="chip k24">2 × 24kg</span></div>
-<div class="m w3"><span class="sr">3 × 40s</span><span class="chip k24">2 × 24kg</span><span class="bump">▲ time</span></div>
-<div class="m w4"><span class="sr">3 × 40s</span><span class="chip k24">2 × 24kg</span></div>
-</div></div></div>
+<div class="ex">
+<div class="slot">
+<span class="code">2A</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
 </div>
-<div class="dfoot"><b>The 24s:</b> short, proud carries. Grip will be the limiter — that’s the point.</div>
+<div class="body">
+<div class="nm">Single-arm strict press</div>
+<div class="note">ribs down, no back lean · per side · use clean strict repetitions</div>
+<div class="m w1">
+<span class="sr">3 × 7</span>
+<span class="chip k12">12kg</span>
+</div>
+<div class="m w2">
+<span class="sr">3 × 8</span>
+<span class="chip k12">12kg</span>
+</div>
+<div class="m w3">
+<span class="sr">3 × 9</span>
+<span class="chip k12">12kg</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 12</span>
+<span class="chip k8">8kg</span>
+</div>
+</div>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">2B</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Single-arm row</div>
+<div class="note">support the free hand, keep the back flat, elbow toward hip · per side</div>
+<div class="m w1">
+<span class="sr">3 × 8</span>
+<span class="chip k20">20kg</span>
+</div>
+<div class="m w2">
+<span class="sr">3 × 10</span>
+<span class="chip k20">20kg</span>
+</div>
+<div class="m w3">
+<span class="sr">3 × 12</span>
+<span class="chip k20">20kg</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 10</span>
+<span class="chip k16">16kg</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pair">
+<div class="ph">
+<span class="tag">Superset</span>
+<span class="hint">alternate 3A ↔ 3B · rest about 45s</span>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">3A</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Single-leg calf raise</div>
+<div class="note">full range, pause at the top · per side</div>
+<div class="m w1">
+<span class="sr">2 × 10</span>
+<span class="chip kbw">BW</span>
+</div>
+<div class="m w2">
+<span class="sr">2 × 12</span>
+<span class="chip kbw">BW</span>
+</div>
+<div class="m w3">
+<span class="sr">2 × 10</span>
+<span class="chip k8">8kg</span>
+<span class="bump">▲ add load</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 10</span>
+<span class="chip kbw">BW</span>
+</div>
+</div>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">3B</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Pallof press</div>
+<div class="note">stand side-on to the band and resist rotation · per side</div>
+<div class="m w1">
+<span class="sr">2 × 8</span>
+<span class="chip kbw">band</span>
+</div>
+<div class="m w2">
+<span class="sr">2 × 10</span>
+<span class="chip kbw">band</span>
+</div>
+<div class="m w3">
+<span class="sr">2 × 12</span>
+<span class="chip kbw">band</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 8</span>
+<span class="chip kbw">easy band</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pair solo">
+<div class="ph">
+<span class="tag tg-fin">Finish</span>
+<span class="hint">rest 60–90s</span>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">4</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Farmer carry</div>
+<div class="note">tall and braced, no swing; put the bells down while grip and posture are still good</div>
+<div class="m w1">
+<span class="sr">2 × 35s</span>
+<span class="chip k20">2 × 20kg</span>
+</div>
+<div class="m w2">
+<span class="sr">2 × 40s</span>
+<span class="chip k20">2 × 20kg</span>
+</div>
+<div class="m w3">
+<span class="sr">2 × 45s</span>
+<span class="chip k20">2 × 20kg</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 30s</span>
+<span class="chip k16">2 × 16kg</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="dfoot">
+<b>Heavy week rule:</b> Week 11 is earned, not compulsory. Hold any individual exercise at its Week 10 prescription if readiness is doubtful.</div>
 </article>
 <article class="day">
-<div class="dhead"><span class="dn">Day B<span>Hinge &amp; Glutes</span></span></div>
+<div class="dhead">
+<span class="dn">Day B<span>Hinge, Lunge &amp; Chest</span>
+</span>
+</div>
 <div class="dbody">
-<div class="pair solo"><div class="ph"><span class="tag tg-solo">Solo</span><span class="hint">rest 2 min</span></div><div class="ex"><div class="slot"><span class="code">1</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
-<div class="nm">Double KB deadlift</div><div class="note">flat back, bells close</div>
-<div class="m w1"><span class="sr">4 × 6</span><span class="chip k20">2 × 20kg</span></div>
-<div class="m w2"><span class="sr">4 × 8</span><span class="chip k20">2 × 20kg</span></div>
-<div class="m w3"><span class="sr">4 × 5</span><span class="chip k24">2 × 24kg</span><span class="bump">▲ new bells</span></div>
-<div class="m w4"><span class="sr">4 × 6</span><span class="chip k24">2 × 24kg</span></div>
-</div></div></div>
-<div class="pair solo"><div class="ph"><span class="tag tg-pow">Power</span><span class="hint">full rest between sets</span></div><div class="ex"><div class="slot"><span class="code">2</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
-<div class="nm">Heavy two-hand swing</div><div class="note">hip snap; stop if it softens</div>
-<div class="m w1"><span class="sr">5 × 8</span><span class="chip k20">20kg</span></div>
-<div class="m w2"><span class="sr">6 × 8</span><span class="chip k20">20kg</span><span class="bump">▲ extra set</span></div>
-<div class="m w3"><span class="sr">5 × 6</span><span class="chip k24">24kg</span><span class="bump">▲ new bell</span></div>
-<div class="m w4"><span class="sr">5 × 8</span><span class="chip k24">24kg</span></div>
-</div></div></div>
-<div class="pair">
-<div class="ph"><span class="tag">Superset</span><span class="hint">alternate 3A ↔ 3B · rest 45–60s</span></div>
-<div class="ex"><div class="slot"><span class="code">3A</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
-<div class="nm">Walking lunge or step-up</div><div class="note">torso tall, front heel · per side</div>
-<div class="m w1"><span class="sr">3 × 8</span><span class="chip k12">12kg</span></div>
-<div class="m w2"><span class="sr">3 × 10</span><span class="chip k12">12kg</span></div>
-<div class="m w3"><span class="sr">3 × 8</span><span class="chip k16">16kg</span><span class="bump">▲ new bell</span></div>
-<div class="m w4"><span class="sr">3 × 10</span><span class="chip k16">16kg</span></div>
-</div></div>
-<div class="ex"><div class="slot"><span class="code">3B</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
-<div class="nm">Floor press</div><div class="note">elbows ~45°, control down · per side</div><div class="wknote w4">1s pause at the bottom</div>
-<div class="m w1"><span class="sr">3 × 8</span><span class="chip k16">16kg</span></div>
-<div class="m w2"><span class="sr">3 × 9</span><span class="chip k16">16kg</span></div>
-<div class="m w3"><span class="sr">3 × 10</span><span class="chip k16">16kg</span></div>
-<div class="m w4"><span class="sr">3 × 10</span><span class="chip k16">16kg</span></div>
-</div></div>
+<div class="pair solo">
+<div class="ph">
+<span class="tag tg-solo">Solo</span>
+<span class="hint">full recovery · 60–90s</span>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">1</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Two-hand swing</div>
+<div class="note">crisp hip snap; stop immediately if speed or hinge shape deteriorates</div>
+<div class="m w1">
+<span class="sr">4 × 8</span>
+<span class="chip k20">20kg</span>
+</div>
+<div class="m w2">
+<span class="sr">4 × 10</span>
+<span class="chip k20">20kg</span>
+</div>
+<div class="m w3">
+<span class="sr">4 × 8</span>
+<span class="chip k20">20kg</span>
+</div>
+<div class="m w4">
+<span class="sr">3 × 8</span>
+<span class="chip k16">16kg</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pair solo">
+<div class="ph">
+<span class="tag tg-solo">Solo</span>
+<span class="hint">rest 90–120s</span>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">2</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Double-KB deadlift</div>
+<div class="note">bells outside the feet, hips back, flat back</div>
+<div class="wknote w3">Deadlift volume peaks this week, so swings and lunges remain submaximal.</div>
+<div class="m w1">
+<span class="sr">3 × 5</span>
+<span class="chip k20">2 × 20kg</span>
+</div>
+<div class="m w2">
+<span class="sr">3 × 6</span>
+<span class="chip k20">2 × 20kg</span>
+</div>
+<div class="m w3">
+<span class="sr">3 × 8</span>
+<span class="chip k20">2 × 20kg</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 5</span>
+<span class="chip k20">2 × 20kg</span>
+</div>
+</div>
+</div>
 </div>
 <div class="pair">
-<div class="ph"><span class="tag">Band circuit</span><span class="hint">4A straight into 4B, then rest · 3 rounds</span></div>
-<div class="ex"><div class="slot"><span class="code">4A</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
-<div class="nm">Seated band abduction</div><div class="note">drive the knees out</div>
-<div class="m w1"><span class="sr">×15</span><span class="chip kbw">band</span></div>
-<div class="m w2"><span class="sr">×15</span><span class="chip kbw">band</span></div>
-<div class="m w3"><span class="sr">×15</span><span class="chip kbw">heavier band</span><span class="bump">▲ band</span></div>
-<div class="m w4"><span class="sr">×15</span><span class="chip kbw">heavier band</span></div>
-</div></div>
-<div class="ex"><div class="slot"><span class="code">4B</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
-<div class="nm">Band lateral walk</div><div class="note">knees out, hips level</div>
-<div class="m w1"><span class="sr">×10/way</span><span class="chip kbw">band</span></div>
-<div class="m w2"><span class="sr">×10/way</span><span class="chip kbw">band</span></div>
-<div class="m w3"><span class="sr">×10/way</span><span class="chip kbw">heavier band</span></div>
-<div class="m w4"><span class="sr">×10/way</span><span class="chip kbw">heavier band</span></div>
-</div></div>
+<div class="ph">
+<span class="tag">Superset</span>
+<span class="hint">alternate 3A ↔ 3B · rest 45–60s after each move</span>
 </div>
-<div class="pair solo"><div class="ph"><span class="tag tg-fin">Finish</span><span class="hint">rest as needed</span></div><div class="ex"><div class="slot"><span class="code">5</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body">
-<div class="nm">Suitcase carry</div><div class="note">stay square, don't lean · per side</div>
-<div class="m w1"><span class="sr">2 × 40s</span><span class="chip k20">20kg</span></div>
-<div class="m w2"><span class="sr">2 × 40s</span><span class="chip k20">20kg</span></div>
-<div class="m w3"><span class="sr">2 × 50s</span><span class="chip k20">20kg</span><span class="bump">▲ time</span></div>
-<div class="m w4"><span class="sr">2 × 50s</span><span class="chip k20">20kg</span></div>
-</div></div></div>
+<div class="ex">
+<div class="slot">
+<span class="code">3A</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
 </div>
-<div class="dfoot"><b>Heaviest day of the program.</b> Two full rest days around it are non-negotiable.</div>
+<div class="body">
+<div class="nm">Reverse lunge</div>
+<div class="note">torso tall, control the step back · per side</div>
+<div class="m w1">
+<span class="sr">3 × 6</span>
+<span class="chip k20">20kg goblet</span>
+</div>
+<div class="m w2">
+<span class="sr">3 × 8</span>
+<span class="chip k20">20kg goblet</span>
+</div>
+<div class="m w3">
+<span class="sr">3 × 10</span>
+<span class="chip k20">20kg goblet</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 8</span>
+<span class="chip k16">16kg goblet</span>
+</div>
+</div>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">3B</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Single-arm floor press</div>
+<div class="note">elbow about 45°, control the descent · per side</div>
+<div class="wknote w1">If 16kg is not controlled, remain at 12kg and use a pause or slow lowering phase.</div>
+<div class="wknote w2">If 16kg is not controlled, remain at 12kg and use a pause or slow lowering phase.</div>
+<div class="wknote w3">If 16kg is not controlled, remain at 12kg and use a pause or slow lowering phase.</div>
+<div class="wknote w4">Use a 3-second lowering phase.</div>
+<div class="m w1">
+<span class="sr">3 × 5</span>
+<span class="chip k16">16kg</span>
+<span class="wn">if ready</span>
+</div>
+<div class="m w2">
+<span class="sr">3 × 6</span>
+<span class="chip k16">16kg</span>
+<span class="wn">if ready</span>
+</div>
+<div class="m w3">
+<span class="sr">3 × 8</span>
+<span class="chip k16">16kg</span>
+<span class="wn">if ready</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 10</span>
+<span class="chip k12">12kg</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pair">
+<div class="ph">
+<span class="tag">Superset</span>
+<span class="hint">alternate 4A ↔ 4B · rest about 45s</span>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">4A</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Band pulldown or assisted pull-up</div>
+<div class="note">use the pulldown when an appropriate assisted pull-up setup is unavailable</div>
+<div class="m w1">
+<span class="sr">3 × 8</span>
+<span class="chip kbw">band</span>
+</div>
+<div class="m w2">
+<span class="sr">3 × 10</span>
+<span class="chip kbw">band</span>
+</div>
+<div class="m w3">
+<span class="sr">3 × 12</span>
+<span class="chip kbw">band</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 8</span>
+<span class="chip kbw">band</span>
+</div>
+</div>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">4B</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Side plank</div>
+<div class="note">straight line, hips stacked · per side</div>
+<div class="m w1">
+<span class="sr">2 × 20s</span>
+<span class="chip kbw">BW</span>
+</div>
+<div class="m w2">
+<span class="sr">2 × 25s</span>
+<span class="chip kbw">BW</span>
+</div>
+<div class="m w3">
+<span class="sr">2 × 30s</span>
+<span class="chip kbw">BW</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 20s</span>
+<span class="chip kbw">BW</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="dfoot">
+<b>Hinge balance:</b> Week 11 deliberately reduces swing and lunge volume while deadlifts peak. Do not add extra swing rounds.</div>
 </article>
 <article class="day">
-<div class="dhead"><span class="dn">Day C<span>Intervals</span></span></div>
+<div class="dhead">
+<span class="dn">Day C<span>Glutes, Thighs &amp; Stability</span>
+</span>
+</div>
 <div class="dbody">
-<div class="circuit">
-<div class="ch">
-<div class="m w1"><span class="rounds">30s ON / 30s OFF ×8</span><span class="hint">swing intervals · crisp, powerful reps only</span></div>
-<div class="m w2"><span class="rounds">30s ON / 30s OFF ×10</span><span class="hint">crisp reps only</span><span class="bump">▲ rounds</span></div>
-<div class="m w3"><span class="rounds">30s ON / 30s OFF ×10</span><span class="hint">crisp reps only</span></div>
-<div class="m w4"><span class="rounds">30s ON / 30s OFF ×10</span><span class="hint">match round-1 reps every round</span></div>
+<div class="pair solo">
+<div class="ph">
+<span class="tag tg-solo">Solo</span>
+<span class="hint">rest 75–90s</span>
 </div>
-<div class="ex"><div class="slot"><span class="code">1</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body"><div class="nm">Two-hand swing</div><div class="note">hip snap, not a squat</div>
-<div class="m w1"><span class="chip k16">16kg</span></div>
-<div class="m w2"><span class="chip k16">16kg</span></div>
-<div class="m w3"><span class="chip k20">20kg</span><span class="bump">▲ new bell</span></div>
-<div class="m w4"><span class="chip k20">20kg</span></div>
-</div></div>
+<div class="ex">
+<div class="slot">
+<span class="code">1</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
 </div>
-<div class="circuit">
-<div class="ch"><div class="m w1"><span class="rounds">3 ROUNDS</span><span class="hint">brisk · 60–90s between rounds</span></div>
-<div class="m w2"><span class="rounds">3 ROUNDS</span><span class="hint">brisk · 60–90s between rounds</span></div>
-<div class="m w3"><span class="rounds">3 ROUNDS</span><span class="hint">brisk · 60–90s between rounds</span></div>
-<div class="m w4"><span class="rounds">3 ROUNDS</span><span class="hint">brisk · 60–90s between rounds</span></div></div>
-<div class="ex"><div class="slot"><span class="code">1</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body"><div class="nm">Goblet squat</div><div class="note">sit deep, chest tall</div>
-<div class="m w1"><span class="sr">×8</span><span class="chip k16">16kg</span></div>
-<div class="m w2"><span class="sr">×8</span><span class="chip k16">16kg</span></div>
-<div class="m w3"><span class="sr">×8</span><span class="chip k16">16kg</span></div>
-<div class="m w4"><span class="sr">×8</span><span class="chip k16">16kg</span></div>
-</div></div>
-<div class="ex"><div class="slot"><span class="code">2</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body"><div class="nm">Push-up</div><div class="note">straight line, full lockout</div>
-<div class="m w1"><span class="sr">×8</span><span class="chip kbw">BW</span></div>
-<div class="m w2"><span class="sr">×8</span><span class="chip kbw">BW</span></div>
-<div class="m w3"><span class="sr">×10</span><span class="chip kbw">BW</span></div>
-<div class="m w4"><span class="sr">×10</span><span class="chip kbw">BW</span></div>
-</div></div>
-<div class="ex"><div class="slot"><span class="code">3</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body"><div class="nm">Single-arm row</div><div class="note">flat back, elbow to hip · per side</div>
-<div class="m w1"><span class="sr">×8</span><span class="chip k16">16kg</span></div>
-<div class="m w2"><span class="sr">×8</span><span class="chip k16">16kg</span></div>
-<div class="m w3"><span class="sr">×8</span><span class="chip k16">16kg</span></div>
-<div class="m w4"><span class="sr">×8</span><span class="chip k16">16kg</span></div>
-</div></div>
+<div class="body">
+<div class="nm">Hip thrust</div>
+<div class="note">upper back supported, ribs down, chin tucked; pause at full hip extension</div>
+<div class="m w1">
+<span class="sr">3 × 8</span>
+<span class="chip k16">2 × 16kg</span>
 </div>
-<div class="circuit">
-<div class="ch"><div class="m w1"><span class="rounds">FINISH</span><span class="hint">glute finisher ×2 rounds</span></div>
-<div class="m w2"><span class="rounds">FINISH</span><span class="hint">glute finisher ×2 rounds</span></div>
-<div class="m w3"><span class="rounds">FINISH</span><span class="hint">glute finisher ×2 rounds</span></div>
-<div class="m w4"><span class="rounds">FINISH</span><span class="hint">glute finisher ×2 rounds</span></div></div>
-<div class="ex"><div class="slot"><span class="code">1</span><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="body"><div class="nm">Banded glute bridge ×15 · seated abduction ×20 · lateral walk ×10/way</div><div class="note">constant band tension</div>
-<div class="m w1"><span class="chip kbw">band</span></div><div class="m w2"><span class="chip kbw">band</span></div>
-<div class="m w3"><span class="chip kbw">band</span></div><div class="m w4"><span class="chip kbw">band</span></div>
-</div></div>
+<div class="m w2">
+<span class="sr">3 × 10</span>
+<span class="chip k16">2 × 16kg</span>
+</div>
+<div class="m w3">
+<span class="sr">3 × 12</span>
+<span class="chip k16">2 × 16kg</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 10</span>
+<span class="chip k24">24kg</span>
 </div>
 </div>
-<div class="dfoot"><b>Stop a round early</b> rather than letting swing form decay — sloppy power reps train nothing good.</div>
+</div>
+</div>
+<div class="pair">
+<div class="ph">
+<span class="tag">Superset</span>
+<span class="hint">alternate 2A ↔ 2B · rest 45–60s after each move</span>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">2A</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Step-up</div>
+<div class="note">use a moderate stable step; drive through the working leg without pushing off the floor · per side</div>
+<div class="m w1">
+<span class="sr">3 × 6</span>
+<span class="chip k20">20kg goblet</span>
+</div>
+<div class="m w2">
+<span class="sr">3 × 8</span>
+<span class="chip k20">20kg goblet</span>
+</div>
+<div class="m w3">
+<span class="sr">3 × 10</span>
+<span class="chip k20">20kg goblet</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 8</span>
+<span class="chip k16">16kg goblet</span>
+</div>
+</div>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">2B</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Incline push-up</div>
+<div class="note">body in one line; lower the hand support only when all repetitions remain controlled</div>
+<div class="m w1">
+<span class="sr">3 × 10</span>
+<span class="chip kbw">BW</span>
+</div>
+<div class="m w2">
+<span class="sr">3 × 12</span>
+<span class="chip kbw">BW</span>
+</div>
+<div class="m w3">
+<span class="sr">3 × 8</span>
+<span class="chip kbw">lower surface</span>
+<span class="bump">▲ harder angle</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 10</span>
+<span class="chip kbw">familiar height</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pair">
+<div class="ph">
+<span class="tag">Superset</span>
+<span class="hint">alternate 3A ↔ 3B · rest 45–60s after each move</span>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">3A</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Supported single-leg Romanian deadlift</div>
+<div class="note">hold a wall or bench lightly; keep hips square and load the working leg · per side</div>
+<div class="m w1">
+<span class="sr">3 × 8</span>
+<span class="chip k16">16kg</span>
+</div>
+<div class="m w2">
+<span class="sr">3 × 10</span>
+<span class="chip k16">16kg</span>
+</div>
+<div class="m w3">
+<span class="sr">3 × 8</span>
+<span class="chip k20">20kg</span>
+<span class="bump">▲ new bell</span>
+<span class="wn">if stable</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 8</span>
+<span class="chip k16">16kg kickstand</span>
+</div>
+</div>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">3B</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Band row</div>
+<div class="note">pull elbows back, pause briefly and control the return</div>
+<div class="m w1">
+<span class="sr">2 × 12</span>
+<span class="chip kbw">band</span>
+</div>
+<div class="m w2">
+<span class="sr">2 × 10</span>
+<span class="chip kbw">heavier band</span>
+<span class="bump">▲ band up</span>
+</div>
+<div class="m w3">
+<span class="sr">2 × 12</span>
+<span class="chip kbw">heavier band</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 10</span>
+<span class="chip kbw">easy band</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pair solo">
+<div class="ph">
+<span class="tag tg-fin">Finish</span>
+<span class="hint">rest 45–60s</span>
+</div>
+<div class="ex">
+<div class="slot">
+<span class="code">4</span>
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7">
+</path>
+</svg>
+</div>
+<div class="body">
+<div class="nm">Suitcase carry</div>
+<div class="note">one bell at the side; stay tall without leaning · per side</div>
+<div class="m w1">
+<span class="sr">2 × 30s</span>
+<span class="chip k24">24kg</span>
+</div>
+<div class="m w2">
+<span class="sr">2 × 35s</span>
+<span class="chip k24">24kg</span>
+</div>
+<div class="m w3">
+<span class="sr">2 × 40s</span>
+<span class="chip k24">24kg</span>
+</div>
+<div class="m w4">
+<span class="sr">2 × 30s</span>
+<span class="chip k20">20kg</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="dfoot">
+<b>Glute and thigh target:</b> use a controlled range and strong lockout. The set should challenge the muscles without compromising balance or joint position.</div>
 </article>
 </div>
-<div class="foot-row"><button class="reset-week" type="button">Reset week</button><button class="timer-open" type="button">Timer</button></div></section>
+<div class="foot-row">
+<button class="reset-week" type="button">Reset week</button>
+<button class="timer-open" type="button">Timer</button>
+</div>
+</section>
+
 <p class="tip">Tap any exercise to tick it off — progress saves automatically on this device.</p>
 </div>
 <script>
-  var STORE_KEY = 'kbProgress.v1';
+  var STORE_KEY = 'kbProgress.v4';
 
   // Give every exercise a stable key (block id + its order within that block)
   // and load any saved completion state before wiring up interactions.
+  // One-time carry-over: weeks 1-2 of Block 1 are the published program's own
+  // sessions in their original order, so any ticks Hannah already recorded there
+  // still line up. Nothing else from the old save is transferable.
+  try {
+    if (!localStorage.getItem(STORE_KEY)) {
+      var legacy = JSON.parse(localStorage.getItem('kbProgress.v1') || '{}');
+      var carried = {};
+      Object.keys(legacy).forEach(function(k){
+        var m = /^b1-(\d+)$/.exec(k);
+        if (!m || +m[1] > 17) return;
+        var wks = (legacy[k] || []).filter(function(w){ return w === 'wk1' || w === 'wk2'; });
+        if (wks.length) carried[k] = wks;
+      });
+      if (Object.keys(carried).length) localStorage.setItem(STORE_KEY, JSON.stringify(carried));
+    }
+  } catch(e){}
+
   var saved = {};
   try { saved = JSON.parse(localStorage.getItem(STORE_KEY)) || {}; } catch(e){ saved = {}; }
 
@@ -871,11 +2403,15 @@
   }
 
   // Per-block completion %: every exercise can be ticked across all 4 weeks.
-  var BTYPE = {b1:'Rebuild', b2:'Strength', b3:'Power'};
+  var BTYPE = {b1:'Foundation', b2:'Build', b3:'Strength'};
   function updateBlockPct(){
     ['b1','b2','b3'].forEach(function(id){
-      var nEx = document.querySelectorAll('#'+id+' .ex').length;
-      var total = nEx * 4, done = 0;
+      // Block 1 shows different exercises in weeks 1-2 than in weeks 3-4, so the
+      // denominator is the number of week-rows an exercise actually has, not nEx * 4.
+      var total = 0, done = 0;
+      document.querySelectorAll('#'+id+' .ex').forEach(function(ex){
+        total += ex.querySelectorAll('.m').length;
+      });
       Object.keys(saved).forEach(function(k){
         if (k.indexOf(id + '-') === 0) done += (saved[k] || []).length;
       });
@@ -983,24 +2519,24 @@
 
 <div aria-label="Session timer" class="tmr" id="tmr" role="dialog">
 <div class="tmr-top">
-<button class="tmr-mode" id="mSw" type="button">Stopwatch</button>
-<button class="tmr-mode on" id="mRest" type="button">Rest</button>
+<button class="tmr-mode on" id="mSw" type="button">Stopwatch</button>
+<button class="tmr-mode" id="mRest" type="button">Rest</button>
 <button aria-label="Close timer" class="tmr-x" id="tmrX" type="button">&times;</button>
 </div>
-<div class="tmr-time" id="tmrTime">1:00</div>
-<div class="tmr-row" id="rowPre">
+<div class="tmr-time" id="tmrTime">0:00</div>
+<div class="tmr-row hide" id="rowPre">
 <button class="tmr-btn" data-s="30" type="button">30s</button>
 <button class="tmr-btn" data-s="45" type="button">45s</button>
 <button class="tmr-btn sel" data-s="60" type="button">60s</button>
 <button class="tmr-btn" data-s="90" type="button">90s</button>
 </div>
 <div class="tmr-row">
-<button class="tmr-btn" id="tmrDown" type="button">&minus;15</button>
+<button class="tmr-btn hide" id="tmrDown" type="button">&minus;15</button>
 <button class="tmr-btn tmr-go" id="tmrGo" type="button">Start</button>
-<button class="tmr-btn" id="tmrUp" type="button">+15</button>
+<button class="tmr-btn hide" id="tmrUp" type="button">+15</button>
 </div>
 <button class="tmr-reset" id="tmrRe" type="button">Reset</button>
-<p class="tmr-hint" id="tmrHint">Tap a preset to start resting straight away</p>
+<p class="tmr-hint" id="tmrHint">Counts up — for holds, carries and rounds</p>
 </div>
 
 <script>
@@ -1016,7 +2552,7 @@
   var mRest=document.getElementById('mRest'), mSw=document.getElementById('mSw');
   var closeX=document.getElementById('tmrX');
 
-  var mode='rest', running=false, tick=null, wl=null, ac=null;
+  var mode='sw', running=false, tick=null, wl=null, ac=null;
   var target=60000, remain=60000, endAt=0;   /* countdown state */
   var swAcc=0, swStart=0;                    /* stopwatch state */
 
